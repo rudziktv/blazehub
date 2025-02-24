@@ -8,42 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aa84b6b-735c-4a4f-b517-9cfd4fface24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/AppScreenshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppFullPermission.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummary.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummaryMeta.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubFullApp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/GeneratedAppModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Resources/com.flamedev.flowyapphub.gresource.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/DescriptionParser/DescriptionParser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Dialog/ErrorDialogService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubAPI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubPermissionDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Images/ImagesService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ImageRequests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ScreenshotsRequests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/UserDefaultServices.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/AlignUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/BoxUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ButtonUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/DateUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ImageUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/MarginUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/WidgetUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppCarousel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppChangelog.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/Badge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/CardWithBadge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/Sidebar.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/StoreAppCards.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafety.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeature.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/IFlathubSafetyFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/StoreAppCards.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/StoreAppCards.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rudziktv&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/rudziktv/flowy-apphub-sln.git&quot;,
+    &quot;accountId&quot;: &quot;1cc19eba-bc48-4fca-a92c-18e61eef7033&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/17118028ce2c41f6b92e07023b1ff0e597400/a2/9f5968cb/Dialog.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3edb9fef1c9d7fc6a3ec4693c84e927b86615de6f18729aaaf18072cb899d1b/ConstraintLayout.Constructors.Generated.cs" root0="FORCE_HIGHLIGHTING" />
@@ -80,22 +61,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.FlowyApphub.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/usr/bin/glib-compile-resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.FlowyApphub.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/usr/bin/glib-compile-resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FlowyApphub" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/FlowyApphub/bin/Debug/net8.0/FlowyApphub" />
@@ -129,8 +110,26 @@
       <workItem from="1740293779700" duration="17871000" />
       <workItem from="1740312885350" duration="333000" />
       <workItem from="1740313310265" duration="329000" />
-      <workItem from="1740313648138" duration="35120000" />
+      <workItem from="1740313648138" duration="35480000" />
+      <workItem from="1740378417489" duration="5340000" />
     </task>
+    <task id="LOCAL-00001" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1740351280954</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740351280954</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init commit">
+      <option name="closed" value="true" />
+      <created>1740351290436</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1740351290436</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,5 +139,8 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="init commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
   </component>
 </project>

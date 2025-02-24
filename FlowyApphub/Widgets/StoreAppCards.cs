@@ -1,5 +1,7 @@
 using FlowyApphub.Models.Flathub;
 using FlowyApphub.Models.FlathubApp;
+using FlowyApphub.Services.Flathub;
+using FlowyApphub.Services.Flathub.Safety;
 using FlowyApphub.Utils;
 using Gtk;
 
@@ -90,14 +92,37 @@ public static class StoreAppCards
 
     public static CardWithBadge GetSafetyCard(FlathubAppPermissions permissions)
     {
+        var safetyFeatures = FlathubSafety.GetAppSafetyFeatures(permissions);
+        var safetyScore = FlathubSafety.GetAppSafety(safetyFeatures);
+        
         var card = new CardWithBadge();
 
-        var goodBadge = new Badge("emblem-default-symbolic", "warning");
-        card.AppendBadges(goodBadge);
+        var safeBadge = new Badge("channel-secure-symbolic");
+        var unsafeBadge = new Badge("dialog-question-symbolic", "error");
+        var probablySafeBadge = new Badge("emblem-default-symbolic", "warning");
+        
+        var safetyLabel = Label.New("Probably Safe");
 
-        var safetyLevel = Label.New("Probably Safe");
-        safetyLevel.AddCssClass("heading");
-        card.AppendLabel(safetyLevel);
+
+        switch (safetyScore)
+        {
+            case 0:
+                card.AppendBadges(unsafeBadge);
+                safetyLabel.SetText("Potentially unsafe");
+                break;
+            case 1:
+                card.AppendBadges(probablySafeBadge);
+                break;
+            default:
+                card.AppendBadges(safeBadge);
+                safetyLabel.SetText("Safe");
+                break;
+        }
+        
+
+        // var safetyLevel = Label.New("Probably Safe");
+        safetyLabel.AddCssClass("heading");
+        card.AppendLabel(safetyLabel);
         
         card.AppendLabel(GetShortPermissions(permissions));
         
