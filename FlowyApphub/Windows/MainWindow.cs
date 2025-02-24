@@ -41,7 +41,7 @@ public class MainWindow : Adw.ApplicationWindow
 
         var viewStack = Adw.ViewStack.New();
         viewStack.AddTitledWithIcon(new AppSiteView(), "view_stack_search", "Search", "folder-saved-search-symbolic");
-        viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_installed", "Installed", "view-grid-symbolic");
+        viewStack.AddTitledWithIcon(new InstalledAppsView(), "view_stack_installed", "Installed", "view-grid-symbolic");
         viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_updates", "Updates", "software-update-available-symbolic");
         viewSwitcher.SetStack(viewStack);
 

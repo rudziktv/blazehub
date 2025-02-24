@@ -14,6 +14,7 @@ using WebKit;
 
 namespace FlowyApphub.Views;
 
+// TODO - reload page on error, few tries
 public class AppSiteView : Box
 {
     private FlathubAppModel? _appModel;
@@ -132,6 +133,7 @@ public class AppSiteView : Box
         var paramsBox = FlowBox.New();
         paramsBox.SetColumnSpacing(8);
         paramsBox.SetHexpand(true);
+        paramsBox.SetVexpand(false);
         paramsBox.SetOrientation(Orientation.Horizontal);
         paramsBox.SetHomogeneous(true);
         paramsBox.SetMinChildrenPerLine(2);
