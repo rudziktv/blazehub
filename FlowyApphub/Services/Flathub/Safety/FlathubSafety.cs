@@ -4,29 +4,33 @@ namespace FlowyApphub.Services.Flathub.Safety;
 
 public static class FlathubSafety
 {
-    public static List<FlathubSafetyFeature> GetAppSafetyFeatures(FlathubAppPermissions permissions)
+    public static List<IFlathubSafetyFeature> GetAppSafetyFeatures(FlathubAppPermissions permissions)
     {
-        var features = new List<FlathubSafetyFeature>();
+        var features = new List<IFlathubSafetyFeature>();
         
         features.Add(new FlathubSafetyFeature("windowing", "Legacy Windowing System", true, permissions.Sockets.ToArray(),
             (_, keywords) => !keywords.Contains("wayland"),
             (_, _) => "Uses legacy windowing system.",
             (_, keywords) => !keywords.Contains("wayland") ? 0 : 2));
         
-        features.Add(new FlathubSafetyFeature("network", "Network access",
-    permissions.Shared.Contains("network"),
-    ["network"],
-            (present, _) => present,
-            (present, _) => present ? "Has network access" : "Has not network access",
-            (present, _) => present ? 1 : 2
-        ));
+    //     features.Add(new FlathubSafetyFeature("network", "Network access",
+    // permissions.Shared.Contains("network"),
+    // ["network"],
+    //         (present, _) => present,
+    //         (present, _) => present ? "Has network access" : "Has not network access",
+    //         (present, _) => present ? 1 : 2
+    //     ));
+        
+        features.Add(new FlathubSafetyFeatureSimple("network", "Network access",
+            permissions.Shared.Contains("network") ? 1 : 2,
+            permissions.Shared.Contains("network") ? "Has network access" : "Has not network access"));
         
         return features;
     }
 
-    public static List<string> GetAppSafetyShortFeatures(List<FlathubSafetyFeature> features)
+    public static List<string> GetAppSafetyShortFeatures(List<IFlathubSafetyFeature> features)
     {
-        var safetyScore = GetAppSafety(features);
+        var safetyScore = GetAppSafetyScore(features);
         var shortFeatures = new List<string>();
 
         foreach (var feature in features.Where(f => f.SafetyScore == safetyScore))
@@ -37,15 +41,9 @@ public static class FlathubSafety
         return shortFeatures;
     }
     
-    public static int GetAppSafety(List<FlathubSafetyFeature> features)
+    public static int GetAppSafetyScore(List<IFlathubSafetyFeature> features)
     {
-        // // EXCEPTIONS
-        // var appDanger = features.Find(f => f.ID == "windowing")?.SafetyScore ?? 0;
-        //
-        // if (appDanger == 0)
-        //     return appDanger;
-
-        var appSafetyScore = 3;
+        var appSafetyScore = 2;
 
         foreach (var safetyFeature in features)
         {

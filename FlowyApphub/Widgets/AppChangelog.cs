@@ -16,19 +16,33 @@ public class AppChangelog : Box
         SetOrientation(Orientation.Vertical);
         
         if (changelog.Count == 0) return;
+
+        var cssProvider = CssProvider.New();
+        cssProvider.LoadFromString(@"
+            .expander {
+                border-radius: 5px;
+            }
+        ");
+        GetStyleContext().AddProvider(cssProvider, 99999);
         
         var lastRelease = changelog[0];
         var dateTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToUInt32(lastRelease.Timestamp)).UtcDateTime;
         var onlyDate = DateOnly.FromDateTime(dateTime);
+
+        var ex = Expander.New("WTF");
+
+        var boxedList = ListBox.New();
+        boxedList.SetSelectionMode(SelectionMode.None);
+        boxedList.AddCssClass("boxed-list");
+        boxedList.SetMargins(3, 0);
         
         var changesExpander = ExpanderRow.New();
         changesExpander.SetOverflow(Overflow.Hidden);
         changesExpander.SetTitle($"Changes in version {lastRelease.Version}");
         changesExpander.SetSubtitle($"{onlyDate.ToString(CultureInfo.CurrentCulture)}, {DateUtils.TimeAgo(dateTime)}");
-        changesExpander.AddCssClass("card");
-        changesExpander.AddCssClass("osd");
         changesExpander.Selectable = false;
-        changesExpander.SetMargins(3, 0);
+        
+        boxedList.Append(changesExpander);
         
         // show only last release
         var rowBox = Box.New(Orientation.Vertical, 8);
@@ -50,7 +64,7 @@ public class AppChangelog : Box
         seeChangelogCtr.OnReleased += (sender, args) => OpenFullAppChangelog(changelog);
         seeChangelogLabel.AddController(seeChangelogCtr);
         
-        Append(changesExpander);
+        Append(boxedList);
     }
 
     private void OpenFullAppChangelog(List<FlathubAppReleaseModel> changelog)

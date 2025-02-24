@@ -2,6 +2,7 @@ namespace FlowyApphub.Services.Flathub.Safety;
 
 public interface IFlathubSafetyFeature
 {
-    public int ID { get; }
+    public string ID { get; }
+    public string Name { get; }
     public int SafetyScore { get; }
 }

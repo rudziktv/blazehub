@@ -92,18 +92,15 @@ public static class StoreAppCards
 
     public static CardWithBadge GetSafetyCard(FlathubAppPermissions permissions)
     {
-        var safetyFeatures = FlathubSafety.GetAppSafetyFeatures(permissions);
-        var safetyScore = FlathubSafety.GetAppSafety(safetyFeatures);
-        
         var card = new CardWithBadge();
+        var safetyFeatures = FlathubSafety.GetAppSafetyFeatures(permissions);
+        var safetyScore = FlathubSafety.GetAppSafetyScore(safetyFeatures);
 
         var safeBadge = new Badge("channel-secure-symbolic");
         var unsafeBadge = new Badge("dialog-question-symbolic", "error");
         var probablySafeBadge = new Badge("emblem-default-symbolic", "warning");
-        
         var safetyLabel = Label.New("Probably Safe");
-
-
+        
         switch (safetyScore)
         {
             case 0:
@@ -119,41 +116,22 @@ public static class StoreAppCards
                 break;
         }
         
-
-        // var safetyLevel = Label.New("Probably Safe");
         safetyLabel.AddCssClass("heading");
         card.AppendLabel(safetyLabel);
-        
-        card.AppendLabel(GetShortPermissions(permissions));
+        card.AppendLabel(GetShortPermissions(safetyFeatures));
         
         return card;
     }
 
-    private static int GetSafetyLevel(FlathubAppPermissions permissions)
-    {
-        return 0;
-    }
-
-    private static Widget GetShortPermissions(FlathubAppPermissions permissions)
+    private static Widget GetShortPermissions(List<IFlathubSafetyFeature> features)
     {
         var box = Box.New(Orientation.Vertical, 0);
-        
-        // 
-        if (!permissions.Sockets.Contains("wayland"))
-        {
-            box.Append(Label.New("Legacy windowing system"));
-        }
+        var shortFeatures = FlathubSafety.GetAppSafetyShortFeatures(features);
 
-        foreach (var shared in permissions.Shared)
+        foreach (var feature in shortFeatures)
         {
-            if (shared == "network")
-                box.Append(Label.New("Network access"));
+            box.Append(Label.New(feature));
         }
-
-        // foreach (var socket in permissions.Sockets)
-        // {
-        //     
-        // }
 
         return box;
     }

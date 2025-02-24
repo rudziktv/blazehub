@@ -13,11 +13,11 @@ using Window = Gtk.Window;
 
 namespace FlowyApphub.Windows;
 
-public class MainWindow : Gtk.ApplicationWindow
+public class MainWindow : Adw.ApplicationWindow
 {
     public MainWindow()
     {
-        AddCssClass("devel");
+        // AddCssClass("devel");
         Title = "Flowy Apphub";
         SetDefaultSize(900, 600);
 
@@ -57,9 +57,17 @@ public class MainWindow : Gtk.ApplicationWindow
         header.PackEnd(more);
         header.SetShowEndTitleButtons(true);
         header.SetTitleWidget(viewSwitcher);
-        SetTitlebar(header);
+
+        var toolbar = ToolbarView.New();
+        toolbar.SetTopBarStyle(ToolbarStyle.Flat);
+        toolbar.AddTopBar(header);
+        toolbar.SetContent(viewStack);
         
-        Child = viewStack;
+        // SetTitlebar(header);
+        
+        // Child = viewStack;
+        // Child = toolbar;
+        SetContent(toolbar);
     }
 
     private void MoreButtonClicked(Button sender, EventArgs args)

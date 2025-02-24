@@ -5,6 +5,7 @@ public class FlathubSafetyFeature(string id, string name, bool present, string[]
     FlathubSafetyFeature.DescriptionCallback descriptionCallback,
     FlathubSafetyFeature.SafetyScoreCallback scoreCallback,
     FlathubSafetyFeature.NameCallback? nameCallback = null)
+    : IFlathubSafetyFeature
 {
     public delegate bool ShowCallback(bool present, string[] keywords);
     public delegate int SafetyScoreCallback(bool present, string[] keywords);

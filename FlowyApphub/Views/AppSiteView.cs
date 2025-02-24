@@ -196,18 +196,21 @@ public class AppSiteView : Box
                     background-color: rgba(0, 0, 0, 0.5);
                 }
             ");
-            StyleContext.AddProviderForDisplay(Display.GetDefault(), cssProvider, 800);
+            // GetStyleContext().AddProvider(cssProvider, 999);
+            StyleContext.AddProviderForDisplay(GetDisplay(), cssProvider, 800);
             previewBox.AddCssClass("preview-background");
             
             var closeBtn = ButtonUtils.Create(iconName: "window-close-symbolic", cssClasses: ["circular"]);
             closeBtn.Align(Align.End, Align.Start);
             closeBtn.SetMargins(12);
             closeBtn.OnClicked += (sender, args) => CloseImagePreview();
+            closeBtn.AddCssClass("background");
 
             var openImageViewerBtn = ButtonUtils.Create(iconName: "image-x-generic-symbolic", cssClasses: "circular");
             openImageViewerBtn.Align(Align.Start, Align.Start);
             openImageViewerBtn.SetMargins(12);
             openImageViewerBtn.OnClicked += (sender, args) => OpenImageViewer();
+            openImageViewerBtn.AddCssClass("background");
 
             
             var imgPreview = Image.NewFromPixbuf(screenshot.Pixbuf);

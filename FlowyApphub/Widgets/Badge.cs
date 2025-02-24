@@ -16,18 +16,15 @@ public class Badge : Box
         var cssProvider = CssProvider.New();
         cssProvider.LoadFromString(@"
             .badge-success {
-                background-color: #007c3d64;
-                color: #8ff0a4;
+                background-color: #007c3d72;
             }
 
             .badge-warning {
-                background-color: #90540064;
-                color: #f9f06b;
+                background-color: #90540072;
             }
 
             .badge-error {
-                background-color: #c3000064;
-                color: #ff938c;
+                background-color: #c3000072;
             }
 
             .circle {
@@ -38,6 +35,7 @@ public class Badge : Box
         GetStyleContext().AddProvider(cssProvider, 999);
         // AddCssClass(cssClass);
         AddCssClass($"badge-{cssClass}");
+        badgeImage.AddCssClass(cssClass);
         AddCssClass("circle");
         Append(badgeImage);
     }
