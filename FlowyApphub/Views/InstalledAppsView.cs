@@ -4,69 +4,102 @@ using FlowyApphub.Services.Dialog;
 using FlowyApphub.Services.Flatpak;
 using FlowyApphub.Utils;
 using FlowyApphub.Widgets;
+using FlowyApphub.Windows;
 using Gtk;
+using Spinner = Adw.Spinner;
 
 namespace FlowyApphub.Views;
 
 public class InstalledAppsView : Box
 {
+    private readonly Box _contentBox;
     private ListBox _appsList;
     
     public InstalledAppsView()
     {
+        var banner = Banner.New("Work in progress!");
+        banner.SetRevealed(true);
+        banner.SetButtonLabel("Go to Test View");
+        banner.OnButtonClicked += (sender, args) =>
+        {
+            MainWindow.Navigation.Push(ViewUtils.WrapViewIntoPage(new AppSiteView("org.gnome.World.Iotas"), "Test View"));
+            // Console.WriteLine("Button clicked");
+        };
+        
         SetOrientation(Orientation.Vertical);
         var scrollView = ScrolledWindow.New();
         scrollView.SetPolicy(PolicyType.Never, PolicyType.Automatic);
         scrollView.SetVexpand(true);
 
-        var contentBox = Box.New(Orientation.Vertical, 0);
-        contentBox.SetMargins(12);
-        contentBox.Append(Label.New("This is installed app page-view"));
+        _contentBox = Box.New(Orientation.Vertical, 0);
+        _contentBox.SetMargins(12);
+        _contentBox.Append(Label.New("This is installed app page-view"));
 
         _appsList = ListBox.New();
         _appsList.AddCssClass("boxed-list");
         _appsList.SetSelectionMode(SelectionMode.None);
         
-        contentBox.Append(_appsList);
+        _contentBox.Append(_appsList);
 
         var clampBox = Clamp.New();
-        clampBox.SetChild(contentBox);
+        clampBox.SetChild(_contentBox);
         clampBox.SetOrientation(Orientation.Horizontal);
         clampBox.SetMaximumSize(600);
         
         scrollView.SetChild(clampBox);
+        Append(banner);
         Append(scrollView);
         
-        RefreshAppsList();
+        // RefreshAppsList();
+        
+        if (FlatpakService.IsRefreshing)
+            SetSpinner();
+
+        FlatpakService.OnFlatpakChangeReceived += SetSpinner;
+        FlatpakService.OnInstalledAppsChanged += () => SetAppsList(FlatpakService.InstalledFlatpakApps);
+        
+        FlatpakService.RefreshFlatpakAppList();
+
+        // FlatpakListener.OnFlatpakFolderChanged += async() =>
+        // {
+        //     // _appsList.Clear();
+        //     // Console.WriteLine("OnFlatpakChanged");
+        //     // SetSpinner();
+        //     // await Task.Delay(2000);
+        //     // RefreshAppsList();
+        // };
     }
 
-    private async void RefreshAppsList()
+    // private async void RefreshAppsList()
+    // {
+    //     try
+    //     {
+    //         SetSpinner();
+    //         SetAppsList(FlatpakService.InstalledFlatpakApps);
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         ErrorDialogService.ShowErrorDialog(e);
+    //         Console.WriteLine(e);
+    //     }
+    // }
+
+    private void SetSpinner()
     {
-        try
-        {
-            SetAppsList(await FlatpakService.GetAppsList());
-        }
-        catch (Exception e)
-        {
-            ErrorDialogService.ShowErrorDialog(e);
-            Console.WriteLine(e);
-        }
+        _contentBox.Clear();
+        _contentBox.Append(Spinner.New());
     }
 
-    private void SetAppsList(List<InstalledFlatpakApp> apps)
+    private void SetAppsList(IEnumerable<InstalledFlatpakApp> apps)
     {
         _appsList.Clear();
 
         foreach (var app in apps)
         {
-            // var appBox = Box.New(Orientation.Vertical, 4);
-            // appBox.SetMargins(12);
-            // appBox.Append(Label.New(app.Name));
-            // appBox.Append(Label.New(app.Version));
-            //
-            // appBox.Append(Image.NewFromIconName(app.ID));
-            
             _appsList.Append(new InstalledAppWidget(app));
         }
+        
+        _contentBox.Clear();
+        _contentBox.Append(_appsList);
     }
 }

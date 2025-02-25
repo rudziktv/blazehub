@@ -12,6 +12,11 @@ public static class AppData
 
     private static void CreateTempDataFolder()
     {
+        // Cache
+        
+        
+        Console.WriteLine("SpecialPath -> " + Environment.GetFolderPath(Environment.SpecialFolder.MyComputer));
+        
         try
         {
             if (!Directory.Exists(TempDataFolder))

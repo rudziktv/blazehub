@@ -15,8 +15,14 @@ namespace FlowyApphub.Windows;
 
 public class MainWindow : Adw.ApplicationWindow
 {
+    public static MainWindow Instance { get; set; } = null!;
+    public static NavigationView Navigation { get; set; } = null!;
+    // public static ViewSwitcher Type { get; set; }
+
     public MainWindow()
     {
+        Instance = this;
+        
         // AddCssClass("devel");
         Title = "Flowy Apphub";
         SetDefaultSize(900, 600);
@@ -25,25 +31,37 @@ public class MainWindow : Adw.ApplicationWindow
         viewSwitcher.SetPolicy(ViewSwitcherPolicy.Wide);
         
 
-        var main = Box.New(Orientation.Vertical, 0);
-        main.SetMargins(10);
-        var ent = SearchEntry.New();
-        ent.PlaceholderText = "Search in Flathub...";
-        var clamp = Clamp.New();
-        clamp.SetOrientation(Orientation.Horizontal);
-        clamp.MaximumSize = 450;
-        clamp.Child = ent;
-        
-        main.Append(clamp);
-        
-        
+        // var main = Box.New(Orientation.Vertical, 0);
+        // main.SetMargins(10);
+        // var ent = SearchEntry.New();
+        // ent.PlaceholderText = "Search in Flathub...";
+        // var clamp = Clamp.New();
+        // clamp.SetOrientation(Orientation.Horizontal);
+        // clamp.MaximumSize = 450;
+        // clamp.Child = ent;
+        //
+        // main.Append(clamp);
+
+        // var navigationView = NavigationView.New();
+        // // navigationView.
+        // Navigation = navigationView;
         
 
         var viewStack = Adw.ViewStack.New();
-        viewStack.AddTitledWithIcon(new AppSiteView(), "view_stack_search", "Search", "folder-saved-search-symbolic");
+        viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_search", "Search", "folder-saved-search-symbolic");
         viewStack.AddTitledWithIcon(new InstalledAppsView(), "view_stack_installed", "Installed", "view-grid-symbolic");
         viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_updates", "Updates", "software-update-available-symbolic");
         viewSwitcher.SetStack(viewStack);
+        
+        // var mainPage = NavigationPage.New(viewStack, "App Site");
+        // navigationView.Add(mainPage);
+        //
+        // navigationView.OnPushed += (sender, args) =>
+        // {
+        //     viewSwitcher.SetVisible(false);
+        // };
+
+        // viewSwitcher.SetVisible(false);
 
         var more = Button.New();
         var moreCon = ButtonContent.New();
@@ -57,6 +75,7 @@ public class MainWindow : Adw.ApplicationWindow
         header.PackEnd(more);
         header.SetShowEndTitleButtons(true);
         header.SetTitleWidget(viewSwitcher);
+        header.SetShowBackButton(true);
 
         var toolbar = ToolbarView.New();
         toolbar.SetTopBarStyle(ToolbarStyle.Flat);
@@ -67,7 +86,15 @@ public class MainWindow : Adw.ApplicationWindow
         
         // Child = viewStack;
         // Child = toolbar;
-        SetContent(toolbar);
+
+        var navigationView = NavigationView.New();
+        Navigation = navigationView;
+
+        var mainStack = NavigationPage.New(toolbar, "Main Stack");
+        navigationView.Add(mainStack);
+        
+        
+        SetContent(navigationView);
     }
 
     private void MoreButtonClicked(Button sender, EventArgs args)

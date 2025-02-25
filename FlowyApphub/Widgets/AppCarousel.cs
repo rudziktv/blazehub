@@ -35,7 +35,7 @@ public class AppCarousel : Box
         nextReveal.SetValign(Align.Center);
         nextReveal.SetChild(nextBtn);
         nextReveal.TransitionType = RevealerTransitionType.SwingRight;
-        nextReveal.SetRevealChild(images.Length > 0);
+        nextReveal.SetRevealChild(images.Length > 1);
         
         
         var prevBtn = Button.New();

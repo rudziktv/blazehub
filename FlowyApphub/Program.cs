@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using FlowyApphub.Services;
 using FlowyApphub.Windows;
 using Gdk;
 using GdkPixbuf;
@@ -96,6 +97,9 @@ class Program
         // supported in this tutorial the parameter is not filled and thus null.
         Application.RunWithSynchronizationContext(null);
         // return;
+        
+        
+        AppServices.StartAppServices();
     }
     
     private static Gdk.Texture LoadFromResource(string resourceName)

@@ -23,7 +23,7 @@ public class FlathubAppModel
     public List<string> Categories { get; set; }
     public List<string> Developers { get; set; }
     public FlathubLaunchableModel Launchable { get; set; }
-    public List<string> Recommends { get; set; }
+    // public List<string> Recommends { get; set; } // not able to define
     public string Description { get; set; }
     public List<Screenshot> Screenshots { get; set; }
     

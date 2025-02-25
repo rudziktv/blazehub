@@ -12,18 +12,8 @@ public static class FlathubSafety
             (_, keywords) => !keywords.Contains("wayland"),
             (_, _) => "Uses legacy windowing system.",
             (_, keywords) => !keywords.Contains("wayland") ? 0 : 2));
-        
-    //     features.Add(new FlathubSafetyFeature("network", "Network access",
-    // permissions.Shared.Contains("network"),
-    // ["network"],
-    //         (present, _) => present,
-    //         (present, _) => present ? "Has network access" : "Has not network access",
-    //         (present, _) => present ? 1 : 2
-    //     ));
-        
-        features.Add(new FlathubSafetyFeatureSimple("network", "Network access",
-            permissions.Shared.Contains("network") ? 1 : 2,
-            permissions.Shared.Contains("network") ? "Has network access" : "Has not network access"));
+    
+        features.Add(FlathubSafetyGenerator.GetNetworkSafety(permissions));
         
         return features;
     }
@@ -33,7 +23,7 @@ public static class FlathubSafety
         var safetyScore = GetAppSafetyScore(features);
         var shortFeatures = new List<string>();
 
-        foreach (var feature in features.Where(f => f.SafetyScore == safetyScore))
+        foreach (var feature in features.Where(f => f.SafetyScore == safetyScore && f.Shown))
         {
             shortFeatures.Add(feature.Name);
         }

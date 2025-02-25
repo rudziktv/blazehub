@@ -17,28 +17,51 @@ namespace FlowyApphub.Views;
 // TODO - reload page on error, few tries
 public class AppSiteView : Box
 {
+    private string _appId;
     private FlathubAppModel? _appModel;
     
-    public AppSiteView()
+    public AppSiteView(string appId)
     {
         // AddCssClass("view");
+        _appId = appId;
         SetOrientation(Orientation.Vertical);
-        GetAppModel("org.gnome.World.Iotas");
+        GetAppModel();
         // GetAppModel("net.eudic.dict");
     }
 
-    private async void GetAppModel(string appId)
+    private async void GetAppModel()
     {
+        var attempts = 0;
+        TryAgain:
+        SetSpinner();
         try
         {
-            SetSpinner();
-            var appModel = await FlathubAPI.GetAppDetails(appId);
+            var appModel = await FlathubAPI.GetAppDetails(_appId);
 
-            var appSummary = await FlathubAPI.GetAppSummary(appId);
+            var appSummary = await FlathubAPI.GetAppSummary(_appId);
             if (appModel == null || appSummary == null) return;
             var icon = await ImageRequests.GetImageFromUrl(appModel.Icon);
             var images = await ScreenshotsRequests.GetScreenshots(appModel.Screenshots);
             SetAppSiteView(appModel, appSummary, images, icon);
+        }
+        catch (HttpRequestException e)
+        {
+            attempts++;
+            if (attempts < 3)
+            {
+                // using var attemptToast = Toast.New("Cannot establish connection. Trying again...");
+                // attemptToast.SetTimeout(1000);
+                goto TryAgain;
+            }
+            
+            SetStatus();
+
+            // var toast = Toast.New("Couldn't establish connection. Check your internet connection.");
+            // toast.SetTimeout(1000);
+            //
+            // var overlay = ToastOverlay.New();
+            // overlay.AddToast(toast);
+            // overlay.SetChild(this);
         }
         catch (Exception e)
         {
@@ -46,13 +69,48 @@ public class AppSiteView : Box
         }
     }
 
+    private void SetStatus()
+    {
+        this.Clear();
+
+        var box = Box.New(Orientation.Vertical, 0);
+        box.SetVexpand(true);
+        box.SetHexpand(true);
+        // box.Align(Align.Center);
+        box.SetValign(Align.Center);
+        
+        var status = StatusPage.New();
+        status.SetTitle("Failed to connect with Flathub");
+        status.SetDescription("Please check your internet connection and try again.");
+        status.SetIconName("network-wireless-offline-symbolic");
+        status.AddCssClass("compact");
+        status.SetHexpand(true);
+        // status.Align(Align.Center);
+        
+        box.Append(status);
+        Append(box);
+    }
+
     private void SetSpinner()
     {
         this.Clear();
+
+        var box = Box.New(Orientation.Vertical, 8);
+        box.SetVexpand(true);
+        box.Align(Align.Center);
         var spinner = Adw.Spinner.New();
         spinner.SetSizeRequest(48, 48);
         spinner.SetMargins(10);
-        Append(spinner);
+        spinner.Align(Align.Center);
+
+        var label = Label.New("Loading App Details...");
+        label.AddCssClass("heading");
+        label.Align(Align.Center);
+        
+        box.Append(spinner);
+        box.Append(label);
+        
+        Append(box);
     }
 
     private void SetAppSiteView(FlathubAppModel appModel, FlathubAppSummary summary, AppScreenshot[] images, Image? icon = null)
@@ -77,7 +135,8 @@ public class AppSiteView : Box
         infoBox.Align(Align.Start, Align.Center);
         if (icon != null)
         {
-            icon.SetSizeRequest(128, 128);
+            icon.SetSizeRequest(108, 108);
+            icon.SetMarginEnd(16);
             topBox.Append(icon);
         }
         var title = Label.New(appModel.Name);

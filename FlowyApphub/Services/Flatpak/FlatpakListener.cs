@@ -12,24 +12,36 @@ namespace FlowyApphub.Services.Flatpak;
 
 public static class FlatpakListener
 {
-    private const string FLATPAK_DBUS_NAME = "org.freedesktop.Flatpak";
-    private const string FLATPAK_DBUS_PATH = "org/freedesktop/flatpak";
+    public delegate void FlatpakChangedArgs();
+    public static event FlatpakChangedArgs? OnFlatpakFolderChanged;
     
-    private static readonly Connection DbusConnection;
-    private static IFlatpakMonitor _flatpakMonitor;
+    private static FileSystemWatcher _watcher = null!;
+    
+    public const string FLATPAK_APPS_PATH = "/var/lib/flatpak/app";
 
-    static FlatpakListener()
-    {
-        DbusConnection = new Connection(Address.Session);
-        Initialize();
-    }
-
-    private static async void Initialize()
+    public static async void StartWatcher()
     {
         try
         {
-            await DbusConnection.ConnectAsync();
-            _flatpakMonitor = DbusConnection.CreateProxy<IFlatpakMonitor>(FLATPAK_DBUS_NAME, FLATPAK_DBUS_PATH);
+            Console.WriteLine("Starting Flatpak Watcher...");
+            _watcher = new FileSystemWatcher(FLATPAK_APPS_PATH);
+            _watcher.NotifyFilter = NotifyFilters.Attributes
+                                   | NotifyFilters.CreationTime
+                                   | NotifyFilters.DirectoryName
+                                   | NotifyFilters.FileName
+                                   | NotifyFilters.LastAccess
+                                   | NotifyFilters.LastWrite
+                                   | NotifyFilters.Security
+                                   | NotifyFilters.Size;
+            // _watcher.Changed += OnChanged;
+            _watcher.Created += OnCreated;
+            _watcher.Deleted += OnDeleted;
+            _watcher.Renamed += OnRenamed;
+            _watcher.Error += OnError;
+            
+            _watcher.Filter = "*.*";
+            // watcher.IncludeSubdirectories = true;
+            _watcher.EnableRaisingEvents = true;
         }
         catch (Exception e)
         {
@@ -37,4 +49,53 @@ public static class FlatpakListener
             Console.WriteLine(e);
         }
     }
+
+    private static async void Invoke()
+    {
+        try
+        {
+            await Task.Delay(2000);
+            OnFlatpakFolderChanged?.Invoke();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+    
+    // private static void OnChanged(object sender, FileSystemEventArgs e)
+    // {
+    //     // ErrorDialogService.ShowErrorDialog(new Exception(e.FullPath));
+    //     if (e.ChangeType != WatcherChangeTypes.Changed)
+    //     {
+    //         return;
+    //     }
+    //     Console.WriteLine($"Changed: {e.FullPath}");
+    // }
+
+    private static void OnCreated(object sender, FileSystemEventArgs e)
+    {
+        Console.WriteLine($"Created: {e.FullPath}");
+        OnFlatpakFolderChanged?.Invoke();
+        // Invoke();
+    }
+
+    private static void OnDeleted(object sender, FileSystemEventArgs e)
+    {
+        Console.WriteLine($"Deleted: {e.FullPath}");
+        OnFlatpakFolderChanged?.Invoke();
+        // Invoke();
+    }
+
+    private static void OnRenamed(object sender, RenamedEventArgs e)
+    {
+        Console.WriteLine($"Renamed:");
+        Console.WriteLine($"    Old: {e.OldFullPath}");
+        Console.WriteLine($"    New: {e.FullPath}");
+    }
+
+    private static void OnError(object sender, ErrorEventArgs e) =>
+        ErrorDialogService.ShowErrorDialog(e.GetException());
+    
+    
 }

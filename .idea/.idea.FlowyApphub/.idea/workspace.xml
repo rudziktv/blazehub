@@ -8,10 +8,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aa84b6b-735c-4a4f-b517-9cfd4fface24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/IFlatpakMonitor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/AppServices.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyGenerator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ViewUtils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummaryMeta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummaryMeta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/GeneratedAppModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/GeneratedAppModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Dialog/ErrorDialogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Dialog/ErrorDialogService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubAPI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubAPI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafety.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafety.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeatureSimple.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeatureSimple.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/IFlathubSafetyFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/IFlathubSafetyFeature.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/AlignUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/AlignUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/WidgetUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/WidgetUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/InstalledAppsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/InstalledAppsView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/AppCarousel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppCarousel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/AppChangelog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppChangelog.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/InstalledAppWidget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/InstalledAppWidget.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,22 +81,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.FlowyApphub.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/usr/bin/glib-compile-resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.FlowyApphub.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/usr/bin/glib-compile-resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="FlowyApphub" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/FlowyApphub/bin/Debug/net8.0/FlowyApphub" />
@@ -114,6 +135,9 @@
       <workItem from="1740415211911" duration="12689000" />
       <workItem from="1740430460120" duration="7224000" />
       <workItem from="1740463240645" duration="570000" />
+      <workItem from="1740463834834" duration="2759000" />
+      <workItem from="1740466886450" duration="3000" />
+      <workItem from="1740496682729" duration="19231000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <option name="closed" value="true" />
@@ -155,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740437637794</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="listener todo note">
+      <option name="closed" value="true" />
+      <created>1740466585638</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740466585638</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +213,7 @@
     <MESSAGE value="flathub safety wip" />
     <MESSAGE value="Flathub safety iteration 2, changelog as ExpanderRow fix" />
     <MESSAGE value="installed apps, flatpak uninstall" />
-    <option name="LAST_COMMIT_MESSAGE" value="installed apps, flatpak uninstall" />
+    <MESSAGE value="listener todo note" />
+    <option name="LAST_COMMIT_MESSAGE" value="listener todo note" />
   </component>
 </project>

@@ -12,6 +12,7 @@
       <PackageReference Include="GirCore.Gtk-4.0" Version="0.6.2" />
       <PackageReference Include="GirCore.WebKit-6.0" Version="0.6.2" />
       <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
+      <PackageReference Include="System.Runtime.Caching" Version="9.0.2" />
       <PackageReference Include="Tmds.DBus" Version="0.21.2" />
     </ItemGroup>
     

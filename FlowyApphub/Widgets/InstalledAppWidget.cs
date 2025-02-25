@@ -2,6 +2,8 @@ using Adw;
 using FlowyApphub.Models.Flatpak;
 using FlowyApphub.Services.Flatpak;
 using FlowyApphub.Utils;
+using FlowyApphub.Views;
+using FlowyApphub.Windows;
 using Gtk;
 using AlertDialog = Adw.AlertDialog;
 
@@ -14,6 +16,15 @@ public class InstalledAppWidget : Box
     public InstalledAppWidget(InstalledFlatpakApp app)
     {
         _app = app;
+
+        var clickCtr = GestureClick.New();
+        clickCtr.OnPressed += (sender, args) =>
+        {
+            // MainWindow.Navigation.Push(NavigationPage.New(new AppSiteView(), app.Name));
+            
+            MainWindow.Navigation.Push(ViewUtils.WrapViewIntoPage(new AppSiteView(app.ID), app.Name));
+        };
+        AddController(clickCtr);
         
         SetOrientation(Orientation.Horizontal);
         this.SetMargins(12);

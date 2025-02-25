@@ -71,9 +71,10 @@ public class AppChangelog : Box
     {
         var dialog = Dialog.New();
         dialog.SetPresentationMode(DialogPresentationMode.Floating);
-        dialog.SetContentWidth(700);
+        dialog.SetContentWidth(600);
         dialog.SetContentHeight(600);
         dialog.SetTitle("Full App Changelog");
+        // dialog.SetFollowsContentSize(true);
         // dialog.SetCanClose(true);
         
         var masterBox = Box.New(Orientation.Vertical, 0);
@@ -91,10 +92,12 @@ public class AppChangelog : Box
         
         var dialogScroll = ScrolledWindow.New();
         dialogScroll.SetVexpand(true);
+        dialogScroll.SetPolicy(PolicyType.Never, PolicyType.Automatic);
         var dialogList = ListBox.New();
         dialogList.SetSelectionMode(SelectionMode.None);
         dialogList.AddCssClass("boxed-list");
         dialogList.SetMargins(32);
+        dialogList.SetVexpand(false);
 
         foreach (var release in changelog)
         {
@@ -123,11 +126,17 @@ public class AppChangelog : Box
             dialogList.Append(releaseBox);
         }
         
-        
-        dialogScroll.SetChild(dialogList);
         // masterBox.Append(toolbar);
         // masterBox.Append(dialogScroll);
+        // toolbar.SetContent(dialogList);
+        
+        masterBox.Append(dialogList);
+        masterBox.SetVexpand(false);
+        dialogScroll.SetChild(masterBox);
+        // masterBox.SetVexpand(true);
+        
         toolbar.SetContent(dialogScroll);
+        // toolbar.SetVexpand(true);
         dialog.SetChild(toolbar);
         dialog.Present(this);
     }

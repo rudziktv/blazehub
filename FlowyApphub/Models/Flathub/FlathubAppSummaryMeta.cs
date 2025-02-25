@@ -24,4 +24,5 @@ public class FlathubAppPermissions
     public List<string> Shared { get; set; }
     public List<string> Devices { get; set; }
     public List<string> Sockets { get; set; }
+    public List<string>? Filesystems { get; set; }
 }

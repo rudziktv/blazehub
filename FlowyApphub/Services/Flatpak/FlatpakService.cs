@@ -1,44 +1,99 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using FlowyApphub.Models.Flatpak;
+using FlowyApphub.Services.Dialog;
 using Gio;
 using File = System.IO.File;
 using Monitor = Gdk.Monitor;
+using Task = System.Threading.Tasks.Task;
 
 namespace FlowyApphub.Services.Flatpak;
 
 public static class FlatpakService
 {
-    static FlatpakService()
-    {
-        StartMonitoringFlatpak();
-    }
+    private static CancellationTokenSource TokenSource { get; set; } = new();
+    private static Task? CurrentRefreshTask { get; set; }
+    public static bool IsRefreshing { get; private set; }
+    public static InstalledFlatpakApp[] InstalledFlatpakApps { get; private set; } = [];
+    public static event FlatpakListener.FlatpakChangedArgs? OnFlatpakChangeReceived;
+    public static event FlatpakListener.FlatpakChangedArgs? OnInstalledAppsChanged;
+    
     
     // TODO - monitor flatpak changes
-    static void StartMonitoringFlatpak()
+    public static async void InitializeFlatpakService()
     {
-        Console.WriteLine("Starting monitoring flatpak");
-        string path = "/var/lib/flatpak/app"; // Lub ~/.local/share/flatpak/app dla użytkownika
-
-        if (!Directory.Exists(path))
+        try
         {
-            Console.WriteLine("Ścieżka nie istnieje! Sprawdź, czy Flatpak jest zainstalowany.");
-            return;
+            CurrentRefreshTask = RefreshFlatpakAppListTask();
+            FlatpakListener.OnFlatpakFolderChanged += FlatpakFolderChanged;
         }
-
-        using var watcher = new FileSystemWatcher(path)
+        catch (Exception e)
         {
-            NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.LastWrite | NotifyFilters.CreationTime,
-            IncludeSubdirectories = true, // WAŻNE!
-            EnableRaisingEvents = true    // WAŻNE!
-        };
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
+    }
 
-        watcher.Created += (s, e) => Console.WriteLine($"Zainstalowano: {e.FullPath}");
-        watcher.Deleted += (s, e) => Console.WriteLine($"Odinstalowano: {e.FullPath}");
-        watcher.Changed += (s, e) => Console.WriteLine($"Zmieniono: {e.FullPath}");
-        watcher.Renamed += (s, e) => Console.WriteLine($"Zmieniono nazwę: {e.OldFullPath} → {e.FullPath}");
+    private static void FlatpakFolderChanged()
+    {
+        try
+        {
+            RefreshFlatpakAppList();
+        }
+        catch (Exception e)
+        {
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
+    }
+
+    public static async void RefreshFlatpakAppList()
+    {
+        try
+        {
+            await TokenSource.CancelAsync();
+            if (!TokenSource.TryReset())
+                TokenSource = new CancellationTokenSource();
+        
+            OnFlatpakChangeReceived?.Invoke();
+            await RefreshFlatpakAppListTask(TokenSource.Token);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private static async Task RefreshFlatpakAppListTask(CancellationToken token = default)
+    {
+        try
+        {
+            IsRefreshing = true;
+            await Task.Delay(500, token);
+            if (token.IsCancellationRequested)
+                return;
+            var apps = await GetFlatpakAppList(token);
+            SetFlatpakAppList(apps);
+            if (token.IsCancellationRequested)
+                return;
+            IsRefreshing = false;
+        }
+        catch (Exception e)
+        {
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
     }
     
+    private static void SetFlatpakAppList(List<InstalledFlatpakApp> flatpakApps)
+        => SetFlatpakAppList(flatpakApps.ToArray());
+
+    private static void SetFlatpakAppList(InstalledFlatpakApp[] flatpakApps)
+    {
+        InstalledFlatpakApps = flatpakApps;
+        OnInstalledAppsChanged?.Invoke();
+    }
+
     public static async Task<bool> UninstallApp(string appId)
     {
         try
@@ -67,38 +122,48 @@ public static class FlatpakService
         return false;
     }
     
-    public static async Task<List<InstalledFlatpakApp>> GetAppsList()
+    private static async Task<List<InstalledFlatpakApp>> GetFlatpakAppList(CancellationToken token = default)
     {
-        ProcessStartInfo psi = new ProcessStartInfo
-        {
-            FileName = "flatpak",
-            Arguments = "list --app --columns=application,name,version,branch,origin,installation,size",
-            RedirectStandardOutput = true,
-            UseShellExecute = false,
-            CreateNoWindow = true
-        };
-
-        using Process process = new Process();
-        process.StartInfo = psi;
-        process.Start();
-
-        var output = await process.StandardOutput.ReadToEndAsync();
-        await process.WaitForExitAsync();
-
-        var outputApps = output.Split('\n');
-
         List<InstalledFlatpakApp> apps = [];
-
-        foreach (var app in outputApps)
+        try
         {
-            var appDetails = app.Split("\t");
-            if (appDetails.Length != 7) continue;
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "flatpak",
+                Arguments = "list --app --columns=application,name,version,branch,origin,installation,size",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using Process process = new Process();
+            process.StartInfo = psi;
+            process.Start();
+
+            var output = await process.StandardOutput.ReadToEndAsync(token);
+            await process.WaitForExitAsync(token);
+            if (token.IsCancellationRequested)
+                return apps;
+
+            var outputApps = output.Split('\n');
+
+
+            foreach (var app in outputApps)
+            {
+                var appDetails = app.Split("\t");
+                if (appDetails.Length != 7) continue;
+                if (token.IsCancellationRequested) return [];
             
-            apps.Add(new InstalledFlatpakApp(appDetails[0], appDetails[1], appDetails[2], appDetails[3], appDetails[4], appDetails[5], appDetails[6]));
-            Console.WriteLine(Regex.Replace(app, @"\s+", " ").Trim());
-        }
+                apps.Add(new InstalledFlatpakApp(appDetails[0], appDetails[1], appDetails[2], appDetails[3], appDetails[4], appDetails[5], appDetails[6]));
+                // Console.WriteLine(Regex.Replace(app, @"\s+", " ").Trim());
+            }
         
-        Console.WriteLine("Installed flatpak apps: " + apps.Count);
+            Console.WriteLine("Installed flatpak apps: " + apps.Count);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
         
         return apps;
     }

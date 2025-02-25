@@ -30,8 +30,8 @@ public static class FlathubAPI
         catch (Exception e)
         {
             Console.WriteLine(e);
+            throw;
         }
-        return null;
     }
 
     public static async Task<FlathubAppSummary?> GetAppSummary(string appId)
@@ -46,8 +46,8 @@ public static class FlathubAPI
         catch (Exception e)
         {
             Console.WriteLine(e);
+            throw;
         }
-        return null;
     }
 
     public static async Task<FlathubFullApp?> GetFullApp(string appId)

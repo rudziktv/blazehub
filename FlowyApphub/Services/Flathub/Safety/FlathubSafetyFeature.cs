@@ -17,7 +17,7 @@ public class FlathubSafetyFeature(string id, string name, bool present, string[]
     public string Name => nameCallback != null ? nameCallback(present, keywords) : name;
     public bool Present => present;
     public string[] Keywords => keywords;
-    public bool Show => showCallback(Present, Keywords);
+    public bool Shown => showCallback(Present, Keywords);
     public int SafetyScore => scoreCallback(Present, Keywords);
     public string Description => descriptionCallback(Present, Keywords);
 }

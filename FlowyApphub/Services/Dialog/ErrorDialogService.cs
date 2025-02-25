@@ -10,6 +10,7 @@ public static class ErrorDialogService
     {
         var dialog = Adw.AlertDialog.New(ex.Message, ex.StackTrace);
         dialog.SetCanClose(true);
+        dialog.SetPreferWideLayout(true);
 
         // var closeBtn = ButtonUtils.Create("Close");
         // dialog.SetExtraChild(closeBtn);
