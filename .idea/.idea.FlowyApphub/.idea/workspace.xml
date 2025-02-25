@@ -8,14 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aa84b6b-735c-4a4f-b517-9cfd4fface24" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/FlatpakApp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/InstalledFlatpakApp.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Views/InstalledAppsView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/InstalledAppWidget.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/IFlatpakMonitor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,22 +60,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.FlowyApphub.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/usr/bin/glib-compile-resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.general",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.FlowyApphub.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/usr/bin/glib-compile-resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FlowyApphub" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/FlowyApphub/bin/Debug/net8.0/FlowyApphub" />
@@ -116,7 +112,8 @@
       <workItem from="1740313648138" duration="35480000" />
       <workItem from="1740378417489" duration="5413000" />
       <workItem from="1740415211911" duration="12689000" />
-      <workItem from="1740430460120" duration="6811000" />
+      <workItem from="1740430460120" duration="7224000" />
+      <workItem from="1740463240645" duration="570000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <option name="closed" value="true" />
@@ -150,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740428787565</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="installed apps, flatpak uninstall">
+      <option name="closed" value="true" />
+      <created>1740437637794</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740437637794</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,31 +163,24 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="init commit" />
     <MESSAGE value="flathub safety wip" />
     <MESSAGE value="Flathub safety iteration 2, changelog as ExpanderRow fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Flathub safety iteration 2, changelog as ExpanderRow fix" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs</url>
-          <line>90</line>
-          <properties documentPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" containingFunctionPresentation="Method 'GetAppsList'">
-            <startOffsets>
-              <option value="2906" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2937" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="installed apps, flatpak uninstall" />
+    <option name="LAST_COMMIT_MESSAGE" value="installed apps, flatpak uninstall" />
   </component>
 </project>
