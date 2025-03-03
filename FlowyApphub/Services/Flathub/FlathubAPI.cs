@@ -1,6 +1,5 @@
 using System.Net.Http.Json;
 using FlowyApphub.Models.Flathub;
-using FlowyApphub.Models.FlathubApp;
 
 namespace FlowyApphub.Services.Flathub;
 
@@ -30,8 +29,8 @@ public static class FlathubAPI
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
+        return null;
     }
 
     public static async Task<FlathubAppSummary?> GetAppSummary(string appId)

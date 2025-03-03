@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <gresources>
-    <gresource prefix="/com/flamedev/flowyapphub/icons/scalable/status/">
-        <file alias="update-symbolic" preprocess="xml-stripblanks">Icons/update-symbolic.svg</file>
+    <gresource prefix="/com/flamedev/flowyapphub">
+        <file preprocess="xml-stripblanks">icons/scalable/status/update-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/status/blaze-apphub.svg</file>
     </gresource>
 </gresources>

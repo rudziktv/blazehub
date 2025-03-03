@@ -55,10 +55,11 @@ public class InstalledAppsView : Box
         if (FlatpakService.IsRefreshing)
             SetSpinner();
 
+        SetAppsList(FlatpakService.InstalledFlatpakApps);
         FlatpakService.OnFlatpakChangeReceived += SetSpinner;
         FlatpakService.OnInstalledAppsChanged += () => SetAppsList(FlatpakService.InstalledFlatpakApps);
         
-        FlatpakService.RefreshFlatpakAppList();
+        // FlatpakService.RefreshFlatpakAppList();
 
         // FlatpakListener.OnFlatpakFolderChanged += async() =>
         // {
@@ -96,7 +97,7 @@ public class InstalledAppsView : Box
 
         foreach (var app in apps)
         {
-            _appsList.Append(new InstalledAppWidget(app));
+            _appsList.Append(new InstalledAppWidget(app).ToBox());
         }
         
         _contentBox.Clear();

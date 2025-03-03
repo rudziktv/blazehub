@@ -4,11 +4,13 @@ using FlowyApphub.Models.FlathubApp;
 using FlowyApphub.Services.Data;
 using FlowyApphub.Services.DescriptionParser;
 using FlowyApphub.Services.Flathub;
+using FlowyApphub.Services.Flatpak;
 using FlowyApphub.Services.Images;
 using FlowyApphub.Services.Requests;
 using FlowyApphub.Utils;
 using FlowyApphub.Widgets;
 using Gdk;
+using Gio;
 using Gtk;
 using WebKit;
 
@@ -150,13 +152,56 @@ public class AppSiteView : Box
         var spacerTopBox = Box.New(Orientation.Horizontal, 0);
         spacerTopBox.SetHexpand(true);
 
-        var installButton = ButtonUtils.Create(
-            "Get", "folder-download-symbolic", "suggested-action");
-        installButton.SetValign(Align.Center);
+        
+
+        // var installButton = ButtonUtils.Create(
+        //     "Get", "folder-download-symbolic", "suggested-action");
+        // installButton.SetValign(Align.Center);
         
         topBox.Append(infoBox);
         topBox.Append(spacerTopBox);
-        topBox.Append(installButton);
+        // topBox.Append(installButton);
+        var flatpak = FlatpakService.InstalledFlatpaks.ContainsKey(appModel.Id);
+        Console.WriteLine($"LATEST RELEASE: {appModel.Releases[0].Version}");
+        
+        if (FlatpakService.InstalledFlatpakIDs.Contains(appModel.Id))
+        {
+            if (appModel.Releases[0].Version != FlatpakService.InstalledFlatpaks[appModel.Id].Version)
+            {
+                var splitMenu = Menu.New();
+                var uninstallItem = MenuItem.New("Uninstall", "app.uninstall-app");
+                // uninstallItem.SetIcon(Image.NewFromIconName(""));
+                splitMenu.AppendItem(uninstallItem);
+                var splitBtn = SplitButton.New();
+                var ctn = ButtonContent.New();
+                ctn.SetIconName("software-update-available-symbolic");
+                ctn.SetLabel("Update");
+                splitBtn.SetChild(ctn);
+                splitBtn.AddCssClass("suggested-action");
+                splitBtn.SetValign(Align.Center);
+                splitBtn.SetMenuModel(splitMenu);
+                topBox.Append(splitBtn);
+            }
+            else
+            {
+                var uninstallBtn = ButtonUtils.Create("Uninstall", "user-trash-symbolic", "destructive-action");
+                uninstallBtn.SetValign(Align.Center);
+                uninstallBtn.OnClicked += (sender, args) => InstalledAppWidget.
+                    UninstallAppDialog(FlatpakService.InstalledFlatpaks[appModel.Id], this);
+                topBox.Append(uninstallBtn);
+            }
+        }
+        else
+        {
+            var installButton = ButtonUtils.Create(
+                "Get", "folder-download-symbolic", "suggested-action");
+            installButton.SetValign(Align.Center);
+            installButton.OnClicked += (sender, args) =>
+            {
+                FlatpakQueue.AddToQueue(new FlatpakAction(FlatpakActionType.Install, appModel.Id));
+            };
+            topBox.Append(installButton);
+        }
         
         
         topClamp.SetMargins(10);

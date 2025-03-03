@@ -1,5 +1,3 @@
-using FlowyApphub.Models.FlathubApp;
-
 namespace FlowyApphub.Models.Flathub;
 
 public class FlathubFullApp(FlathubAppModel appstream, FlathubAppSummary appSummary)

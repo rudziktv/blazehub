@@ -1,26 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <AssemblyName>blazeapphub</AssemblyName>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <Target Name="CompileGResources" BeforeTargets="BeforeCompile">
+        <Exec Command="glib-compile-resources Resources/com.flamedev.flowyapphub.gresource.xml --target=$(OutDir)/com.flamedev.flowyapphub.gresource --sourcedir=Resources" />
+    </Target>
+
     <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
       <PackageReference Include="GirCore.Adw-1" Version="0.6.2" />
       <PackageReference Include="GirCore.Gtk-4.0" Version="0.6.2" />
       <PackageReference Include="GirCore.WebKit-6.0" Version="0.6.2" />
       <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
       <PackageReference Include="System.Runtime.Caching" Version="9.0.2" />
-      <PackageReference Include="Tmds.DBus" Version="0.21.2" />
     </ItemGroup>
-    
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec Command="echo Compiling extra resources..." />
-<!--        <Exec Command="blueprint-compiler batch-compile ./Blueprints ./Blueprints ./Blueprints/*.blp" />-->
-        <Exec Command="glib-compile-resources --sourcedir ./Resources ./Resources/com.flamedev.flowyapphub.gresource.xml --target=$(OutDir)/com.flamedev.flowyapphub.gresource" />
-<!--        <Exec Command="while read lang_code; do \&#xA;  mkdir -p $(OutDir)/${lang_code}; \&#xA;  msgfmt ../NickvisionMoney.Shared/Resources/po/${lang_code}.po -o $(OutDir)/${lang_code}/denaro.mo; \&#xA;done %3C ../NickvisionMoney.Shared/Resources/po/LINGUAS" />-->
-    </Target>
 
+    <ItemGroup>
+        <None Remove="Resources\**\*" />
+        <EmbeddedResource Include="Resources\com.flamedev.flowyapphub.gresource">
+            <LogicalName>com.flamedev.flowyapphub.gresource</LogicalName>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

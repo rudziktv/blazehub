@@ -22,46 +22,17 @@ public class MainWindow : Adw.ApplicationWindow
     public MainWindow()
     {
         Instance = this;
-        
-        // AddCssClass("devel");
         Title = "Flowy Apphub";
         SetDefaultSize(900, 600);
 
         var viewSwitcher = Adw.ViewSwitcher.New();
-        viewSwitcher.SetPolicy(ViewSwitcherPolicy.Wide);
-        
-
-        // var main = Box.New(Orientation.Vertical, 0);
-        // main.SetMargins(10);
-        // var ent = SearchEntry.New();
-        // ent.PlaceholderText = "Search in Flathub...";
-        // var clamp = Clamp.New();
-        // clamp.SetOrientation(Orientation.Horizontal);
-        // clamp.MaximumSize = 450;
-        // clamp.Child = ent;
-        //
-        // main.Append(clamp);
-
-        // var navigationView = NavigationView.New();
-        // // navigationView.
-        // Navigation = navigationView;
-        
+        viewSwitcher.SetPolicy(ViewSwitcherPolicy.Wide);        
 
         var viewStack = Adw.ViewStack.New();
-        viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_search", "Search", "folder-saved-search-symbolic");
+        viewStack.AddTitledWithIcon(new SearchView(), "view_stack_search", "Search", "folder-saved-search-symbolic");
         viewStack.AddTitledWithIcon(new InstalledAppsView(), "view_stack_installed", "Installed", "view-grid-symbolic");
-        viewStack.AddTitledWithIcon(Box.New(Orientation.Vertical, 0), "view_stack_updates", "Updates", "software-update-available-symbolic");
+        viewStack.AddTitledWithIcon(new UpdateView(), "view_stack_updates", "Updates", "update-symbolic");
         viewSwitcher.SetStack(viewStack);
-        
-        // var mainPage = NavigationPage.New(viewStack, "App Site");
-        // navigationView.Add(mainPage);
-        //
-        // navigationView.OnPushed += (sender, args) =>
-        // {
-        //     viewSwitcher.SetVisible(false);
-        // };
-
-        // viewSwitcher.SetVisible(false);
 
         var more = Button.New();
         var moreCon = ButtonContent.New();
@@ -81,11 +52,6 @@ public class MainWindow : Adw.ApplicationWindow
         toolbar.SetTopBarStyle(ToolbarStyle.Flat);
         toolbar.AddTopBar(header);
         toolbar.SetContent(viewStack);
-        
-        // SetTitlebar(header);
-        
-        // Child = viewStack;
-        // Child = toolbar;
 
         var navigationView = NavigationView.New();
         Navigation = navigationView;
@@ -99,9 +65,9 @@ public class MainWindow : Adw.ApplicationWindow
 
     private void MoreButtonClicked(Button sender, EventArgs args)
     {
-        var wtf = new Gio.Menu();
-        wtf.Append("About", "app.about");
-        var moreMenu = PopoverMenu.NewFromModel(wtf);
+        var menuModel = new Gio.Menu();
+        menuModel.Append("About", "app.about");
+        var moreMenu = PopoverMenu.NewFromModel(menuModel);
 
         var before = sender.Child;
         moreMenu.SetParent(sender);

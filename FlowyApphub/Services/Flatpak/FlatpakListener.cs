@@ -1,14 +1,6 @@
 using FlowyApphub.Services.Dialog;
-using Tmds.DBus;
 
 namespace FlowyApphub.Services.Flatpak;
-
-// TODO! use:
-// inotifywait -m /var/lib/flatpak/app -e delete -e create
-// inotifywait is not natievly on Fedora!
-// args:
-// m -> monitor
-// e -> event
 
 public static class FlatpakListener
 {
@@ -49,29 +41,6 @@ public static class FlatpakListener
             Console.WriteLine(e);
         }
     }
-
-    private static async void Invoke()
-    {
-        try
-        {
-            await Task.Delay(2000);
-            OnFlatpakFolderChanged?.Invoke();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
-    }
-    
-    // private static void OnChanged(object sender, FileSystemEventArgs e)
-    // {
-    //     // ErrorDialogService.ShowErrorDialog(new Exception(e.FullPath));
-    //     if (e.ChangeType != WatcherChangeTypes.Changed)
-    //     {
-    //         return;
-    //     }
-    //     Console.WriteLine($"Changed: {e.FullPath}");
-    // }
 
     private static void OnCreated(object sender, FileSystemEventArgs e)
     {

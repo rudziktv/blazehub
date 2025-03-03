@@ -1,6 +1,6 @@
 using System.Globalization;
 using Adw;
-using FlowyApphub.Models.FlathubApp;
+using FlowyApphub.Models.Flathub;
 using FlowyApphub.Services.DescriptionParser;
 using FlowyApphub.Utils;
 using Gtk;
@@ -54,15 +54,18 @@ public class AppChangelog : Box
         rowBox.Append(rowTitle);
         rowBox.Append(DescriptionParser.ParseDescription(lastRelease.Description, "<ul><li>No changelog provided</li></ul>"));
         changesExpander.AddRow(rowBox);
-        
+
+        var seeChangelogBox = Box.New(Orientation.Vertical, 0);
         var seeChangelogLabel = Label.New("See changelog");
         seeChangelogLabel.AddCssClass("heading");
         seeChangelogLabel.SetMargins(8);
-        changesExpander.AddRow(seeChangelogLabel);
+        seeChangelogLabel.Align(Align.Center);
+        seeChangelogBox.Append(seeChangelogLabel);
+        changesExpander.AddRow(seeChangelogBox);
 
         var seeChangelogCtr = GestureClick.New();
         seeChangelogCtr.OnReleased += (sender, args) => OpenFullAppChangelog(changelog);
-        seeChangelogLabel.AddController(seeChangelogCtr);
+        seeChangelogBox.AddController(seeChangelogCtr);
         
         Append(boxedList);
     }

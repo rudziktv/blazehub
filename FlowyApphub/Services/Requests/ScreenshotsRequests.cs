@@ -1,3 +1,4 @@
+using FlowyApphub.Models.Flathub;
 using FlowyApphub.Models.FlathubApp;
 using Gtk;
 

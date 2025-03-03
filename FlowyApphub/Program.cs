@@ -27,26 +27,53 @@ class Program
         // If you don't own a domain name you can use a project specific domain such as github pages. 
         // e.g. io.github.projectname
         // Gio.ApplicationFlags.FlagsNone indicates no special flags are being used.
-        Application = Adw.Application.New(AppInfo.APP_ID, Gio.ApplicationFlags.FlagsNone);
+        Application = Adw.Application.New(AppInfo.APP_ID, Gio.ApplicationFlags.FlagsNone); 
         Application.SetVersion("0.1a");
         
+        var mainResPath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)) + "/com.flamedev.flowyapphub.gresource";
+        var resPath = Path.Combine(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)), "Resources") + "/com.flamedev.flowyapphub.gresource";
         var weirdPath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)) + "/com.flamedev.flowyapphub.gresource";
-        var res = Functions.ResourceLoad(weirdPath);
+        var res = Functions.ResourceLoad(File.Exists(mainResPath) ? mainResPath : resPath);
         Functions.ResourcesRegister(res);
 
+        // Debug resource contents
+        try 
+        {
+            var children = res.EnumerateChildren("/com/flamedev/flowyapphub/icons/scalable/status", ResourceLookupFlags.None);
+            Console.WriteLine("Resource contents:");
+            foreach (var child in children)
+            {
+                Console.WriteLine($"Found resource: {child}");
+            }
+        } 
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error enumerating resources: {e.Message}");
+        }
+
         var theme = Gtk.IconTheme.GetForDisplay(Gdk.Display.GetDefault());
-        theme.AddResourcePath("/com/flamedev/flowyapphub/icons/scalable/status/");
+        theme.AddResourcePath("/com/flamedev/flowyapphub/icons");
+        theme.AddResourcePath("/var/lib/flatpak/exports/share/icons");
+        theme.AddSearchPath("icons");
+        theme.AddSearchPath("/var/lib/flatpak/exports/share/icons");
         
         if (!File.Exists(weirdPath))
         {
             Console.WriteLine($"GResource file not found at: {weirdPath}");
         }
 
-        
-        foreach (var asset in res.EnumerateChildren("/com/flamedev/flowyapphub/icons/scalable/status/", ResourceLookupFlags.None))
+        // Debug theme paths
+        Console.WriteLine("\nIcon theme search paths:");
+        foreach (var path in theme.SearchPath)
         {
-            Console.WriteLine(asset);
+            Console.WriteLine(path);
         }
+
+        // Try both with and without the full path
+        Console.WriteLine("\nIcon availability:");
+        Console.WriteLine($"update-symbolic: {theme.HasIcon("update-symbolic")}");
+        Console.WriteLine($"blaze-apphub: {theme.HasIcon("blaze-apphub")}");
+        Console.WriteLine($"Full path: {theme.HasIcon("/com/flamedev/flowyapphub/icons/scalable/status/update-symbolic")}");
         
         
         
@@ -57,15 +84,16 @@ class Program
             about.SetApplicationName(AppInfo.APP_NAME);
             about.SetDeveloperName("rudzik.tv");
             about.SetLicenseType(License.Gpl30);
-            try
-            {
-                about.SetApplicationIcon("view-grid-symbolic");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            about.SetApplicationIcon("blaze-apphub");
+            // try
+            // {
+            //     about.SetApplicationIcon("view-grid-symbolic");
+            // }
+            // catch (Exception e)
+            // {
+            //     Console.WriteLine(e);
+            //     throw;
+            // }
             about.SetVersion(Application.Version ?? "error");
             
             about.Present(Application.ActiveWindow);
@@ -90,6 +118,7 @@ class Program
             // This makes the window visible to the user.
             window.Show();
         };
+        AppServices.StartAppServices();
 
         // Start the application's event loop and process user interactions.
         // RunWithSynchronizationContext ensures proper thread synchronization for GTK.
@@ -97,28 +126,5 @@ class Program
         // supported in this tutorial the parameter is not filled and thus null.
         Application.RunWithSynchronizationContext(null);
         // return;
-        
-        
-        AppServices.StartAppServices();
-    }
-    
-    private static Gdk.Texture LoadFromResource(string resourceName)
-    {
-        try
-        {
-            var data = Assembly.GetExecutingAssembly().ReadResourceAsByteArray(resourceName);
-            using var bytes = Bytes.New(data);
-            var pixbufLoader = PixbufLoader.New();
-            pixbufLoader.WriteBytes(bytes);
-            pixbufLoader.Close();
-
-            var pixbuf = pixbufLoader.GetPixbuf() ?? throw new Exception("No pixbuf loaded");
-            return Gdk.Texture.NewForPixbuf(pixbuf);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Unable to load image resource '{resourceName}': {e.Message}");
-            return null;
-        }
     }
 }

@@ -1,5 +1,4 @@
 using FlowyApphub.Models.Flathub;
-using FlowyApphub.Models.FlathubApp;
 using FlowyApphub.Services.Flathub;
 using FlowyApphub.Services.Flathub.Safety;
 using FlowyApphub.Utils;
