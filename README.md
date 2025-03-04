@@ -2,24 +2,24 @@
 ### Preparing
 First, build your nuget-sources, with [flatpak-builder-tools/dotnet](https://github.com/flatpak/flatpak-builder-tools/tree/master/dotnet])
 ```bash
-python3 /path/to/tool/flatpak-dotnet-generator.py nuget-sources.json ./FlowyApphub/FlowyApphub.csproj --runtime linux-x64 --dotnet-args --no-cache --verbosity detailed
+python3 /path/to/tool/flatpak-dotnet-generator.py nuget-sources.json ./BlazeHub/BlazeHub.csproj --runtime linux-x64 --dotnet-args --no-cache --verbosity detailed
 ```
 Next create your manifest file
 ```json
 {
-    "app-id": "io.github.flamedev.blazeapphub",
+    "app-id": "io.github.flamedev.blazehub",
     "runtime": "org.gnome.Platform",
     "runtime-version": "47",
     "sdk": "org.gnome.Sdk",
     "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.dotnet8"
     ],
-    "command": "/app/blazeapphub",
+    "command": "BlazeHub",
     "finish-args": [
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
-        ...permissions
+        "...permissions"
     ],
     "build-options": {
         "append-path": "/usr/lib/sdk/dotnet8/bin",
@@ -33,18 +33,20 @@ Next create your manifest file
     },
     "modules": [
         {
-            "name": "blazeapphub",
+            "name": "BlazeHub",
             "buildsystem": "simple",
             "build-commands": [
-                ". /usr/lib/sdk/dotnet8/enable.sh",
-                "dotnet publish -c Release --self-contained --source nuget-sources FlowyApphub/FlowyApphub.csproj -o /app"
+              ". /usr/lib/sdk/dotnet8/enable.sh",
+              "dotnet publish -c Release --self-contained --source nuget-sources BlazeHub/BlazeHub.csproj -o ${FLATPAK_DEST}/bin",
+              "mkdir ${FLATPAK_DEST}/share",
+              "cp -r ${FLATPAK_DEST}/bin/share/* ${FLATPAK_DEST}/share"
             ],
             "sources": [
                 {
                     "type": "dir",
                     "path": ".."
                 },
-                "../FlowyApphub/nuget-sources.json"
+              "../BlazeHub/nuget-sources.json"
             ]
         }
     ]
@@ -55,5 +57,10 @@ Next create your manifest file
 ### Building
 At the root of the project, run command:
 ```bash
-flatpak-builder --force-clean --user --repo=repo --install builddir flatpak/io.github.flamedev.blazeapphub.json
+flatpak-builder --force-clean --user --repo=repo --install builddir flatpak/io.github.flamedev.blazehub.json
+```
+
+If you want to bundle it into `.flatpak`
+```bash
+flatpak build-bundle repo blazehub.flatpak io.github.flamedev.blazehub --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
 ```
