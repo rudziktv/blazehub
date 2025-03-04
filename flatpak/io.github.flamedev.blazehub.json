@@ -6,7 +6,7 @@
     "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.dotnet8"
     ],
-    "command": "blazehub",
+    "command": "BlazeHub",
     "finish-args": [
         "--socket=fallback-x11",
         "--socket=wayland",
@@ -19,8 +19,11 @@
         "--talk-name=org.freedesktop.Flatpak",
         "--filesystem=host",
         "--filesystem=host-os",
+        "--filesystem=~/.local/share/flatpak/app",
+        "--filesystem=~/.local/share/flatpak/exports/share/icons",
         "--filesystem=/var/lib/flatpak/exports/share/icons",
-        "--env=FLATPAK_CMD=/run/host/bin/flatpak"
+        "--env=FLATPAK_CMD=/run/host/bin/flatpak",
+        "--env=DOTNET_ROOT=/app/lib/dotnet"
     ],
     "build-options": {
         "append-path": "/usr/lib/sdk/dotnet8/bin",
@@ -34,18 +37,20 @@
     },
     "modules": [
         {
-            "name": "blazehub",
+            "name": "BlazeHub",
             "buildsystem": "simple",
             "build-commands": [
                 ". /usr/lib/sdk/dotnet8/enable.sh",
-                "dotnet publish -c Release --self-contained --source nuget-sources FlowyApphub/FlowyApphub.csproj -o /app"
+                "dotnet publish -c Release --self-contained --source nuget-sources BlazeHub/BlazeHub.csproj -o ${FLATPAK_DEST}/bin",
+                "mkdir ${FLATPAK_DEST}/share",
+                "cp -r ${FLATPAK_DEST}/bin/share/* ${FLATPAK_DEST}/share"
             ],
             "sources": [
                 {
                     "type": "dir",
                     "path": ".."
                 },
-                "../FlowyApphub/nuget-sources.json"
+                "../BlazeHub/nuget-sources.json"
             ]
         }
     ]

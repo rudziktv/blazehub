@@ -14,6 +14,7 @@ public class SearchView : Box
     {
         _searchEntry = SearchEntry.New();
         _searchEntry.SetHexpand(true);
+        _searchEntry.SetPlaceholderText("AppID ex. re.sonny.Eloquent");
         var btn = Button.NewFromIconName("folder-saved-search-symbolic");
         btn.OnClicked += OnIDSearchBtn;
         

@@ -1,3 +1,4 @@
+using System.Web;
 using Adw;
 
 namespace BlazeHub.Services.Dialog;
@@ -25,7 +26,15 @@ public static class ErrorDialogService
         {
             if (args.Response == "report")
             {
-                UserDefaultServices.OpenUrl("https://github.com/");
+                var logs = ex.Message + "\n" + (ex.StackTrace ?? "");
+                var uriBuilder = new UriBuilder("https://github.com/rudziktv/blazehub/issues/new");
+                var query = HttpUtility.ParseQueryString(string.Empty);
+                query["template"] = "bug_report.yaml";
+                query["logs"] = logs;
+                uriBuilder.Query = query.ToString();
+                dialog.GetClipboard().SetText(logs);
+                
+                UserDefaultServices.OpenUrl(uriBuilder.ToString());
                 Console.WriteLine("Reporting bug...");
             }
             else if (args.Response == "copy")

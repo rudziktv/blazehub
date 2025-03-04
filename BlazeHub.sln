@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowyApphub", "FlowyApphub\FlowyApphub.csproj", "{E133C4E4-BA30-4D81-BAFB-A8FD18E4BDF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazeHub", "BlazeHub\BlazeHub.csproj", "{E133C4E4-BA30-4D81-BAFB-A8FD18E4BDF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>BlazeHub</RootNamespace>
+    </PropertyGroup>
+
+    <Target Name="CompileGResources" BeforeTargets="BeforeCompile">
+        <Exec Command="glib-compile-resources Resources/com.flamedev.flowyapphub.gresource.xml --target=$(OutDir)/com.flamedev.flowyapphub.gresource --sourcedir=Resources" />
+    </Target>
+
+    <ItemGroup>
+        <None Remove="Resources\**\*" />
+        <EmbeddedResource Include="Resources\com.flamedev.flowyapphub.gresource">
+            <LogicalName>com.flamedev.flowyapphub.gresource</LogicalName>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="share\icons\hicolor\128x128\apps\io.github.flamedev.blazehub.png" />
+        <EmbeddedResource Include="share\icons\hicolor\128x128\apps\io.github.flamedev.blazehub.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="share\icons\hicolor\scalable\apps\io.github.flamedev.blazehub.svg" />
+        <EmbeddedResource Include="share\icons\hicolor\scalable\apps\io.github.flamedev.blazehub.svg">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="share\applications\io.github.flamedev.blazehub.desktop" />
+        <EmbeddedResource Include="share\applications\io.github.flamedev.blazehub.desktop">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+      <PackageReference Include="GirCore.Adw-1" Version="0.6.2" />
+      <PackageReference Include="GirCore.Gtk-4.0" Version="0.6.2" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.72" />
+    </ItemGroup>
+</Project>

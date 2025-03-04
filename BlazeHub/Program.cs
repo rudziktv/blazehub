@@ -24,7 +24,7 @@ class Program
         // e.g. io.github.projectname
         // Gio.ApplicationFlags.FlagsNone indicates no special flags are being used.
         Application = Adw.Application.New(AppInfo.APP_ID, Gio.ApplicationFlags.FlagsNone); 
-        Application.SetVersion("0.1a");
+        Application.SetVersion("0.0.0a.dev.preview.1");
         
         var mainResPath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)) + "/com.flamedev.flowyapphub.gresource";
         var resPath = Path.Combine(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)), "Resources") + "/com.flamedev.flowyapphub.gresource";
@@ -50,6 +50,7 @@ class Program
         var theme = Gtk.IconTheme.GetForDisplay(Gdk.Display.GetDefault());
         theme.AddResourcePath("/com/flamedev/flowyapphub/icons");
         theme.AddResourcePath("/var/lib/flatpak/exports/share/icons");
+        theme.AddSearchPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".local/share/flatpak/exports/share/icons"));
         theme.AddSearchPath("icons");
         theme.AddSearchPath("/var/lib/flatpak/exports/share/icons");
         
@@ -81,24 +82,10 @@ class Program
             about.SetDeveloperName("rudzik.tv");
             about.SetLicenseType(License.Gpl30);
             about.SetApplicationIcon("blaze-apphub");
-            // try
-            // {
-            //     about.SetApplicationIcon("view-grid-symbolic");
-            // }
-            // catch (Exception e)
-            // {
-            //     Console.WriteLine(e);
-            //     throw;
-            // }
             about.SetVersion(Application.Version ?? "error");
-            
             about.Present(Application.ActiveWindow);
         };
         Application.AddAction(action);
-        
-        
-        // application.AddAction(Action);
-        
 
         // Attach an event handler to the application's "OnActivate" event.
         // This event is triggered when the application is started or activated.
@@ -121,6 +108,5 @@ class Program
         // The "null" parameter takes the arguments from the commandline. As there are no arguments
         // supported in this tutorial the parameter is not filled and thus null.
         Application.RunWithSynchronizationContext(null);
-        // return;
     }
 }

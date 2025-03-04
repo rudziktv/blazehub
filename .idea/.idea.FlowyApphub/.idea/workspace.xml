@@ -8,67 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7aa84b6b-735c-4a4f-b517-9cfd4fface24" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/AdwGtkFramework/AdvancedBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/AdwGtkFramework/AdvancedBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/indexLayout.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/projectSettingsUpdater.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlowyApphub/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlowyApphub.sln" beforeDir="false" afterPath="$PROJECT_DIR$/BlazeHub.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/FlowyApphub.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/AppScreenshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/AppScreenshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppFullPermission.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppFullPermission.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummary.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummaryMeta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubAppSummaryMeta.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubFullApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/FlathubFullApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/GeneratedAppModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flathub/GeneratedAppModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/FlatpakApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/FlatpakApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/InstalledFlatpakApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/InstalledFlatpakApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/UpdateFlatpakApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Models/Flatpak/UpdateFlatpakApp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowyApphub/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/AppServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/AppServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Data/AppInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/DescriptionParser/DescriptionParser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/DescriptionParser/DescriptionParser.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Dialog/ErrorDialogService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Dialog/ErrorDialogService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubAPI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubAPI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubPermissionDetails.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/FlathubPermissionDetails.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafety.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafety.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeatureSimple.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyFeatureSimple.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/FlathubSafetyGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/IFlathubSafetyFeature.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flathub/Safety/IFlathubSafetyFeature.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakAction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakActionType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakActionType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakListener.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakPackageProgress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakPackageProgress.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakProgress.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakProgress.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakQueue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakQueue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Flatpak/FlatpakService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Images/ImagesService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Images/ImagesService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ImageRequests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ImageRequests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ScreenshotsRequests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/Requests/ScreenshotsRequests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Services/UserDefaultServices.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Services/UserDefaultServices.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/AlignUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/AlignUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/BoxUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/BoxUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/ButtonUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ButtonUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/DataUnits.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/DataUnits.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/DateUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/DateUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/ImageUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ImageUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/MarginUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/MarginUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/NetworkUnitUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/NetworkUnitUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/ViewUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/ViewUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Utils/WidgetUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Utils/WidgetUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/AppSiteView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/InstalledAppsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/InstalledAppsView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/SearchView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/SearchView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Views/UpdateView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Views/UpdateView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/AppCarousel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppCarousel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/AppChangelog.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/AppChangelog.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/Badge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/Badge.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/CardWithBadge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/CardWithBadge.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/InstalledAppWidget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/InstalledAppWidget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/Sidebar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/Sidebar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/StoreAppCards.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/StoreAppCards.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/UpdateItemPackageWidget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/UpdateItemPackageWidget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Widgets/UpdateItemWidget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Widgets/UpdateItemWidget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FlowyApphub/Windows/MainWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flatpak/io.github.flamedev.blazehub.json" beforeDir="false" afterPath="$PROJECT_DIR$/flatpak/io.github.flamedev.blazehub.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +133,7 @@
       <workItem from="1740987521810" duration="619000" />
       <workItem from="1741017668132" duration="2639000" />
       <workItem from="1741038054352" duration="256000" />
-      <workItem from="1741085848597" duration="1484000" />
+      <workItem from="1741085848597" duration="9051000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <option name="closed" value="true" />

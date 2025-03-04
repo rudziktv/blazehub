@@ -4,6 +4,7 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /builddir
+/build-dir
 blazehub.flatpak
 /repo
 /.flatpak-builder

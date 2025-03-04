@@ -49,40 +49,26 @@ public class InstalledAppsView : Box
         Append(banner);
         Append(scrollView);
         
-        // RefreshAppsList();
-        
         if (FlatpakService.IsRefreshing)
             SetSpinner();
 
-        SetAppsList(FlatpakService.InstalledFlatpakApps);
+        GLib.Functions.IdleAdd(1, () =>
+        {
+            SetAppsList(FlatpakService.InstalledFlatpakApps);
+            return false;
+        });
         FlatpakService.OnFlatpakChangeReceived += SetSpinner;
-        FlatpakService.OnInstalledAppsChanged += () => SetAppsList(FlatpakService.InstalledFlatpakApps);
-        
-        // FlatpakService.RefreshFlatpakAppList();
-
-        // FlatpakListener.OnFlatpakFolderChanged += async() =>
-        // {
-        //     // _appsList.Clear();
-        //     // Console.WriteLine("OnFlatpakChanged");
-        //     // SetSpinner();
-        //     // await Task.Delay(2000);
-        //     // RefreshAppsList();
-        // };
+        FlatpakService.OnInstalledAppsChanged += OnInstalledAppsChanged;
     }
 
-    // private async void RefreshAppsList()
-    // {
-    //     try
-    //     {
-    //         SetSpinner();
-    //         SetAppsList(FlatpakService.InstalledFlatpakApps);
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         ErrorDialogService.ShowErrorDialog(e);
-    //         Console.WriteLine(e);
-    //     }
-    // }
+    private void OnInstalledAppsChanged()
+    {
+        GLib.Functions.IdleAdd(0, () =>
+        {
+            SetAppsList(FlatpakService.InstalledFlatpakApps);
+            return false;
+        });
+    }
 
     private void SetSpinner()
     {

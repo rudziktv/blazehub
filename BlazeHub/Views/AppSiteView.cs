@@ -8,8 +8,10 @@ using BlazeHub.Services.Images;
 using BlazeHub.Services.Requests;
 using BlazeHub.Utils;
 using BlazeHub.Widgets;
+using BlazeHub.Windows;
 using Gio;
 using Gtk;
+using AlertDialog = Adw.AlertDialog;
 
 namespace BlazeHub.Views;
 
@@ -195,7 +197,34 @@ public class AppSiteView : Box
             installButton.SetValign(Align.Center);
             installButton.OnClicked += (sender, args) =>
             {
-                FlatpakQueue.AddToQueue(new FlatpakAction(FlatpakActionType.Install, appModel.Id));
+                var dialog = AlertDialog.New("Select installation mode",
+                    "Select user or system mode of the installation.");
+                
+                dialog.SetPreferWideLayout(true);
+                dialog.AddResponse("dismiss", "Dismiss");
+                dialog.AddResponse("install-user", "User");
+                dialog.AddResponse("install-system", "System");
+                dialog.SetCloseResponse("dismiss");
+                dialog.SetResponseAppearance("install-system", ResponseAppearance.Suggested);
+                dialog.SetResponseAppearance("dismiss", ResponseAppearance.Destructive);
+                dialog.OnResponse += (sender, args) =>
+                {
+                    switch (args.Response)
+                    {
+                        case "install-user":
+                            FlatpakQueue.AddToQueue(new FlatpakAction(FlatpakActionType.Install, appModel.Id, false));
+                            break;
+                        case "install-system":
+                            FlatpakQueue.AddToQueue(new FlatpakAction(FlatpakActionType.Install, appModel.Id));
+                            break;
+                    }
+
+                    if (args.Response != "dismiss")
+                        MainWindow.Navigation.Pop();
+                };
+                
+                // FlatpakQueue.AddToQueue(new FlatpakAction(FlatpakActionType.Install, appModel.Id));
+                dialog.Present(this);
             };
             topBox.Append(installButton);
         }

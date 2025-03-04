@@ -8,8 +8,12 @@ public static class FlatpakListener
     public static event FlatpakChangedArgs? OnFlatpakFolderChanged;
     
     private static FileSystemWatcher _watcher = null!;
+    private static FileSystemWatcher _localWatcher = null!;
     
     public const string FLATPAK_APPS_PATH = "/var/lib/flatpak/app";
+    public static string LocalFlatpakAppsPath => Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+        ".local/share/flatpak/app");
 
     public static async void StartWatcher()
     {
@@ -17,29 +21,35 @@ public static class FlatpakListener
         {
             Console.WriteLine("Starting Flatpak Watcher...");
             _watcher = new FileSystemWatcher(FLATPAK_APPS_PATH);
-            _watcher.NotifyFilter = NotifyFilters.Attributes
-                                   | NotifyFilters.CreationTime
-                                   | NotifyFilters.DirectoryName
-                                   | NotifyFilters.FileName
-                                   | NotifyFilters.LastAccess
-                                   | NotifyFilters.LastWrite
-                                   | NotifyFilters.Security
-                                   | NotifyFilters.Size;
-            // _watcher.Changed += OnChanged;
-            _watcher.Created += OnCreated;
-            _watcher.Deleted += OnDeleted;
-            _watcher.Renamed += OnRenamed;
-            _watcher.Error += OnError;
-            
-            _watcher.Filter = "*.*";
-            // watcher.IncludeSubdirectories = true;
-            _watcher.EnableRaisingEvents = true;
+            _localWatcher = new FileSystemWatcher(LocalFlatpakAppsPath);
+
+            _watcher.ConfigureWatcher();
+            _localWatcher.ConfigureWatcher();
         }
         catch (Exception e)
         {
             ErrorDialogService.ShowErrorDialog(e);
             Console.WriteLine(e);
         }
+    }
+
+    private static void ConfigureWatcher(this FileSystemWatcher watcher)
+    {
+        watcher.NotifyFilter = NotifyFilters.Attributes
+                                | NotifyFilters.CreationTime
+                                | NotifyFilters.DirectoryName
+                                | NotifyFilters.FileName
+                                | NotifyFilters.LastAccess
+                                | NotifyFilters.LastWrite
+                                | NotifyFilters.Security
+                                | NotifyFilters.Size;
+        watcher.Created += OnCreated;
+        watcher.Deleted += OnDeleted;
+        watcher.Renamed += OnRenamed;
+        watcher.Error += OnError;
+            
+        watcher.Filter = "*.*";
+        watcher.EnableRaisingEvents = true;
     }
 
     private static void OnCreated(object sender, FileSystemEventArgs e)

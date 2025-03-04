@@ -58,7 +58,8 @@ public static class FlatpakQueue
             switch (Queue[0].ActionType)
             {
                 case FlatpakActionType.Install:
-                    await ProcessInstallTask(Queue[0].AppTarget, token);
+                    await ProcessInstallTask(Queue[0].AppTarget, token, Queue[0].SysAction);
+                    // await ProcessInstallRemotes(Queue[0].AppTarget);
                     break;
             }
             OnTaskFinished?.Invoke(Queue[0]);
@@ -141,11 +142,37 @@ public static class FlatpakQueue
         return false;
     }
 
-    private static async Task<bool> ProcessInstallTask(string appId, CancellationToken token = default)
+    private static async Task ProcessInstallRemotes(string appId)
     {
         try
         {
             var info = FlatpakService.GetFlatpakStartInfo($"install --app -y flathub {appId}");
+            using var process = new Process();
+            process.StartInfo = info;
+            process.Start();
+
+            CurrentProgress = new FlatpakProgress();
+            // process.StandardOutput.DiscardBufferedData();
+            process.OutputDataReceived += (_, a) =>
+            {
+                Console.WriteLine(a.Data);
+            };
+            process.BeginOutputReadLine();
+            
+            
+            await process.WaitForExitAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private static async Task<bool> ProcessInstallTask(string appId, CancellationToken token = default, bool sysInstall = true)
+    {
+        try
+        {
+            var info = FlatpakService.GetFlatpakStartInfo($"install --app -y {(sysInstall ? "--system" : "--user")} flathub {appId}");
             using var process = new Process();
             process.StartInfo = info;
             process.Start();

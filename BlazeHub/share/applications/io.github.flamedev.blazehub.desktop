@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Blaze Hub
+Exec=BlazeHub
+Type=Application
+Icon=io.github.flamedev.blazehub
+X-Flatpak=io.github.flamedev.blazehub
+Categories=Utility;GNOME;
