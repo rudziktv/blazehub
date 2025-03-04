@@ -8,7 +8,7 @@ public static class AppServices
     {
         Console.WriteLine("Starting App Services");
         FlatpakService.InitializeFlatpakService();
-        FlatpakListener.StartWatcher();
+        FlatpakListener.InitializeListener();
         Console.WriteLine("App Services Started");
     }
 }
