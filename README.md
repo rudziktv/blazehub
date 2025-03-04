@@ -57,7 +57,7 @@ Next create your manifest file
 ### Building
 At the root of the project, run command:
 ```bash
-flatpak-builder --force-clean --user --repo=repo --install builddir flatpak/io.github.flamedev.blazehub.json
+flatpak-builder build-dir --user --force-clean --install --repo=repo flatpak/io.github.flamedev.blazehub.json
 ```
 
 If you want to bundle it into `.flatpak`
