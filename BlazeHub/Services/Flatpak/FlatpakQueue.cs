@@ -44,7 +44,8 @@ public static class FlatpakQueue
 
     private static void StartTaskIfFree()
     {
-        CurrentTask ??= ProcessTask();
+        if (CurrentTask?.IsCompleted ?? true)
+            CurrentTask = ProcessTask();
     }
 
     private static async Task ProcessTask(CancellationToken token = default)

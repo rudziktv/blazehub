@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flatpak: Build and Run",
+            "type": "shell",
+            "command": "flatpak-builder build-dir --user --force-clean --install --repo=repo flatpak/io.github.flamedev.blazehub.json \n flatpak run io.github.flamedev.blazehub",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
