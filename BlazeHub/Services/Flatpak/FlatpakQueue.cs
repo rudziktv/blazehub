@@ -55,18 +55,19 @@ public static class FlatpakQueue
             if (Queue.Count == 0)
                 return;
             
-            OnTaskStarted?.Invoke(Queue[0]);
-            switch (Queue[0].ActionType)
+            var action = Queue[0];
+            OnTaskStarted?.Invoke(action);
+            switch (action.ActionType)
             {
                 case FlatpakActionType.Install:
-                    await ProcessInstallTask(Queue[0].AppTarget, token, Queue[0].SysAction);
-                    // await ProcessInstallRemotes(Queue[0].AppTarget);
+                    await ProcessInstallTask(action.AppTarget, token, action.SysAction);
+                    // await ProcessInstallRemotes(action.AppTarget);
                     break;
             }
-            OnTaskFinished?.Invoke(Queue[0]);
+
             Queue.RemoveAt(0);
-            if (Queue.Count != 0)
-                CurrentTask = ProcessTask(token);
+            OnTaskFinished?.Invoke(action);
+            CurrentTask = Queue.Count != 0 ? ProcessTask(token) : null;
         }
         catch (Exception e)
         {
