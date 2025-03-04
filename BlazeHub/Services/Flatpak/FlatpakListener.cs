@@ -20,8 +20,16 @@ public static class FlatpakListener
     {
         try
         {
-            FlatpakDirs.LocalFlatpak.FlatpakAppsFolderExists(StartLocalWatcher);
-            FlatpakDirs.GlobalFlatpak.FlatpakAppsFolderExists(StartGlobalWatcher);
+            FlatpakDirs.LocalFlatpak.FlatpakAppsFolderExists(StartLocalWatcher, () =>
+            {
+                StartLocalWatcher();
+                OnFlatpakFolderChanged?.Invoke();
+            });
+            FlatpakDirs.GlobalFlatpak.FlatpakAppsFolderExists(StartGlobalWatcher, () =>
+            {
+                StartGlobalWatcher();
+                OnFlatpakFolderChanged?.Invoke();
+            });
         }
         catch (Exception e)
         {

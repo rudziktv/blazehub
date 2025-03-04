@@ -28,20 +28,26 @@ public class FlatpakDirs(string basePath)
     /// Checks if '.../flatpak/app' exists. If exists, callback will be invoked immediately, if not - when the directory will be created.
     /// </summary>
     /// <param name="callback">Callback</param>
+    /// <param name="alternativeCallback">Callback which is invoked when directory is created.</param>
     /// <returns>If directory exists or not.</returns>
+    public bool FlatpakAppsFolderExists(Action callback, Action alternativeCallback)
+        => CheckFlatpakDirectory(callback, alternativeCallback, FlatpakApp);
     public bool FlatpakAppsFolderExists(Action callback)
-        => CheckFlatpakDirectory(callback, FlatpakApp);
+        => CheckFlatpakDirectory(callback, callback, FlatpakApp);
 
     /// <summary>
     /// Checks if '.../flatpak/exports/share/icons' exists. If exists, callback will be invoked immediately, if not - when the directory will be created.
     /// </summary>
-    /// <param name="callback">Callback which is invoked in case, if directory is created.</param>
+    /// <param name="callback">Callback which is invoked if directory exists.</param>
+    /// <param name="alternativeCallback">Callback which is invoked when directory is created.</param>
     /// <returns>If directory exists or not.</returns>
+    public bool FlatpakIconsFolderExists(Action callback, Action alternativeCallback)
+        => CheckFlatpakDirectory(callback, alternativeCallback, FlatpakIcons);
     public bool FlatpakIconsFolderExists(Action callback)
-        => CheckFlatpakDirectory(callback, FlatpakIcons);
+        => CheckFlatpakDirectory(callback, callback, FlatpakIcons);
     
 
-    private bool CheckFlatpakDirectory(Action callback, string directory)
+    private bool CheckFlatpakDirectory(Action callback, Action alternativeCallback, string directory)
     {
         var exists = Directory.Exists(directory);
         try
@@ -66,7 +72,7 @@ public class FlatpakDirs(string basePath)
 
         void CallbackWrapper(object obj, FileSystemEventArgs args)
         {
-            callback?.Invoke();
+            alternativeCallback?.Invoke();
             if (_watcher != null && args.FullPath.StartsWith(directory))
                 _watcher.Created -= CallbackWrapper;
         }

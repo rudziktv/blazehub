@@ -8,3 +8,4 @@ riderModule.iml
 blazehub.flatpak
 /repo
 /.flatpak-builder
+*.flatpak
