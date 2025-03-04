@@ -72,9 +72,12 @@ public class FlatpakDirs(string basePath)
 
         void CallbackWrapper(object obj, FileSystemEventArgs args)
         {
-            alternativeCallback?.Invoke();
+            Console.WriteLine($"NewPathCreated-FlatpakDirs {args.FullPath}");
             if (_watcher != null && args.FullPath.StartsWith(directory))
+            {
+                alternativeCallback?.Invoke();
                 _watcher.Created -= CallbackWrapper;
+            }
         }
     }
     
