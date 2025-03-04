@@ -1,6 +1,6 @@
 ## Build process
 ### Preparing
-First, build your nuget-sources, with [this](https://github.com/flatpak/flatpak-builder-tools/tree/master/dotnet])
+First, build your nuget-sources, with [flatpak-builder-tools/dotnet](https://github.com/flatpak/flatpak-builder-tools/tree/master/dotnet])
 ```bash
 python3 /path/to/tool/flatpak-dotnet-generator.py nuget-sources.json ./FlowyApphub/FlowyApphub.csproj --runtime linux-x64 --dotnet-args --no-cache --verbosity detailed
 ```
