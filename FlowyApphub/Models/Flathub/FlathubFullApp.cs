@@ -1,4 +1,4 @@
-namespace FlowyApphub.Models.Flathub;
+namespace BlazeHub.Models.Flathub;
 
 public class FlathubFullApp(FlathubAppModel appstream, FlathubAppSummary appSummary)
 {

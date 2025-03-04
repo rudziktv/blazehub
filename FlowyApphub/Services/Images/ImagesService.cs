@@ -1,9 +1,8 @@
 using System.Diagnostics;
-using FlowyApphub.Services.Data;
-using FlowyApphub.Services.Dialog;
+using BlazeHub.Services.Dialog;
 using GdkPixbuf;
 
-namespace FlowyApphub.Services.Images;
+namespace BlazeHub.Services.Images;
 
 public static class ImagesService
 {

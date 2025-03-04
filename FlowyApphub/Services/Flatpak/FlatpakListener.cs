@@ -1,6 +1,6 @@
-using FlowyApphub.Services.Dialog;
+using BlazeHub.Services.Dialog;
 
-namespace FlowyApphub.Services.Flatpak;
+namespace BlazeHub.Services.Flatpak;
 
 public static class FlatpakListener
 {

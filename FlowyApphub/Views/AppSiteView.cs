@@ -1,20 +1,17 @@
 using Adw;
-using FlowyApphub.Models.Flathub;
-using FlowyApphub.Models.FlathubApp;
-using FlowyApphub.Services.Data;
-using FlowyApphub.Services.DescriptionParser;
-using FlowyApphub.Services.Flathub;
-using FlowyApphub.Services.Flatpak;
-using FlowyApphub.Services.Images;
-using FlowyApphub.Services.Requests;
-using FlowyApphub.Utils;
-using FlowyApphub.Widgets;
-using Gdk;
+using BlazeHub.Models.Flathub;
+using BlazeHub.Services.Data;
+using BlazeHub.Services.DescriptionParser;
+using BlazeHub.Services.Flathub;
+using BlazeHub.Services.Flatpak;
+using BlazeHub.Services.Images;
+using BlazeHub.Services.Requests;
+using BlazeHub.Utils;
+using BlazeHub.Widgets;
 using Gio;
 using Gtk;
-using WebKit;
 
-namespace FlowyApphub.Views;
+namespace BlazeHub.Views;
 
 // TODO - reload page on error, few tries
 public class AppSiteView : Box

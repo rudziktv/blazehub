@@ -1,4 +1,4 @@
-namespace FlowyApphub.Models.Flatpak;
+namespace BlazeHub.Models.Flatpak;
 
 public class UpdateFlatpakApp(string newVersion, string downloadSize)
 {

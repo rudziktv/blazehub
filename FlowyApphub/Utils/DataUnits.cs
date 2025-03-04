@@ -1,4 +1,4 @@
-namespace FlowyApphub.Utils;
+namespace BlazeHub.Utils;
 
 public enum DataUnits
 {

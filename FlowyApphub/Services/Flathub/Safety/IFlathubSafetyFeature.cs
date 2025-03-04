@@ -1,4 +1,4 @@
-namespace FlowyApphub.Services.Flathub.Safety;
+namespace BlazeHub.Services.Flathub.Safety;
 
 public interface IFlathubSafetyFeature
 {

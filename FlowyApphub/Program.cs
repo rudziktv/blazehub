@@ -1,19 +1,15 @@
 ﻿using System.Reflection;
-using FlowyApphub.Services;
-using FlowyApphub.Windows;
-using Gdk;
-using GdkPixbuf;
+using BlazeHub.Services;
+using BlazeHub.Windows;
 using Gio;
-using GLib;
-using GObject;
 using Gtk;
 using AboutDialog = Adw.AboutDialog;
-using AppInfo = FlowyApphub.Services.Data.AppInfo;
+using AppInfo = BlazeHub.Services.Data.AppInfo;
 using Application = Adw.Application;
 using File = System.IO.File;
 using Functions = Gio.Functions;
 
-namespace FlowyApphub;
+namespace BlazeHub;
 
 class Program
 {

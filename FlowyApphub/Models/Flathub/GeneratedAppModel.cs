@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FlowyApphub.Models.Flathub;
+namespace BlazeHub.Models.Flathub;
 
 [Serializable]
 public class FlathubAppModel

@@ -1,4 +1,4 @@
-namespace FlowyApphub.Services.Data;
+namespace BlazeHub.Services.Data;
 
 public static class AppData
 {

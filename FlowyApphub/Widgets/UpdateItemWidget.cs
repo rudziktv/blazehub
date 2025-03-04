@@ -1,8 +1,8 @@
+using BlazeHub.Services.Flatpak;
+using BlazeHub.Utils;
 using Gtk;
-using FlowyApphub.Utils;
-using FlowyApphub.Services.Flatpak;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class UpdateItemWidget : Box
 {

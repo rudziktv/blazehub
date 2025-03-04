@@ -1,10 +1,10 @@
 using Adw;
-using FlowyApphub.Services.Flathub;
-using FlowyApphub.Utils;
-using FlowyApphub.Windows;
+using BlazeHub.Services.Flathub;
+using BlazeHub.Utils;
+using BlazeHub.Windows;
 using Gtk;
 
-namespace FlowyApphub.Views;
+namespace BlazeHub.Views;
 
 public class SearchView : Box
 {

@@ -1,16 +1,15 @@
 using Adw;
-using FlowyApphub.AdwGtkFramework;
-using FlowyApphub.Models.Flatpak;
-using FlowyApphub.Services.Flatpak;
-using FlowyApphub.Utils;
-using FlowyApphub.Views;
-using FlowyApphub.Windows;
-using Gdk;
+using BlazeHub.AdwGtkFramework;
+using BlazeHub.Models.Flatpak;
+using BlazeHub.Services.Flatpak;
+using BlazeHub.Utils;
+using BlazeHub.Views;
+using BlazeHub.Windows;
 using Gio;
 using Gtk;
 using AlertDialog = Adw.AlertDialog;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class InstalledAppWidget : AdvancedBox
 {

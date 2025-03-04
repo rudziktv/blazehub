@@ -1,9 +1,9 @@
-using FlowyApphub.Utils;
+using BlazeHub.Utils;
 using Gtk;
 using HtmlAgilityPack;
 using WrapMode = Pango.WrapMode;
 
-namespace FlowyApphub.Services.DescriptionParser;
+namespace BlazeHub.Services.DescriptionParser;
 
 public static class DescriptionParser
 {

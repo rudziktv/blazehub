@@ -1,4 +1,4 @@
-namespace FlowyApphub.Services.Flathub.Safety;
+namespace BlazeHub.Services.Flathub.Safety;
 
 public class FlathubSafetyFeature(string id, string name, bool present, string[] keywords,
     FlathubSafetyFeature.ShowCallback showCallback,

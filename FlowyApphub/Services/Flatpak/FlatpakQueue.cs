@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using FlowyApphub.Utils;
+using BlazeHub.Utils;
 
-namespace FlowyApphub.Services.Flatpak;
+namespace BlazeHub.Services.Flatpak;
 
 public static class FlatpakQueue
 {
@@ -127,16 +127,9 @@ public static class FlatpakQueue
     {
         try
         {
-            var psi = new ProcessStartInfo
-            {
-                FileName = "flatpak",
-                Arguments = $"uninstall --app -y {appId}",
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            var info = FlatpakService.GetFlatpakStartInfo($"uninstall --app -y {appId}");
             using var process = new Process();
-            process.StartInfo = psi;
+            process.StartInfo = info;
             process.Start();
             await process.WaitForExitAsync(token);
             return true;
@@ -152,16 +145,9 @@ public static class FlatpakQueue
     {
         try
         {
-            var psi = new ProcessStartInfo
-            {
-                FileName = "flatpak",
-                Arguments = $"install --app -y flathub {appId}",
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            var info = FlatpakService.GetFlatpakStartInfo($"install --app -y flathub {appId}");
             using var process = new Process();
-            process.StartInfo = psi;
+            process.StartInfo = info;
             process.Start();
 
             CurrentProgress = new FlatpakProgress();

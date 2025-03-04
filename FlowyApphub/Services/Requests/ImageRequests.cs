@@ -1,7 +1,7 @@
 using GdkPixbuf;
 using Gtk;
 
-namespace FlowyApphub.Services.Requests;
+namespace BlazeHub.Services.Requests;
 
 public static class ImageRequests
 {

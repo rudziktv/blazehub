@@ -1,7 +1,7 @@
 using System.Diagnostics;
-using FlowyApphub.Services.Dialog;
+using BlazeHub.Services.Dialog;
 
-namespace FlowyApphub.Services;
+namespace BlazeHub.Services;
 
 public static class UserDefaultServices
 {

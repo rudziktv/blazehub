@@ -1,8 +1,7 @@
-using FlowyApphub.Models.Flathub;
-using FlowyApphub.Models.FlathubApp;
+using BlazeHub.Models.Flathub;
 using Gtk;
 
-namespace FlowyApphub.Services.Requests;
+namespace BlazeHub.Services.Requests;
 
 public static class ScreenshotsRequests
 {

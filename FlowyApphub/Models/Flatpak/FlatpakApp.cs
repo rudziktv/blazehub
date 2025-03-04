@@ -1,4 +1,4 @@
-namespace FlowyApphub.Models.Flatpak;
+namespace BlazeHub.Models.Flatpak;
 
 public class FlatpakApp(string id, string name, string version, string branch, string origin, string installation)
 {

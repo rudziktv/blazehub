@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <AssemblyName>blazeapphub</AssemblyName>
+        <AssemblyName>blazehub</AssemblyName>
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>BlazeHub</RootNamespace>
     </PropertyGroup>
 
     <Target Name="CompileGResources" BeforeTargets="BeforeCompile">

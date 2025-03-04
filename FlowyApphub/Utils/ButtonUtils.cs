@@ -1,7 +1,7 @@
 using Adw;
 using Gtk;
 
-namespace FlowyApphub.Utils;
+namespace BlazeHub.Utils;
 
 public static class ButtonUtils
 {

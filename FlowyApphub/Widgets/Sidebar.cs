@@ -1,6 +1,6 @@
 using Gtk;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class Sidebar : Box
 {

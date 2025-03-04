@@ -1,14 +1,13 @@
 using Adw;
-using FlowyApphub.Models.Flatpak;
-using FlowyApphub.Services.Dialog;
-using FlowyApphub.Services.Flatpak;
-using FlowyApphub.Utils;
-using FlowyApphub.Widgets;
-using FlowyApphub.Windows;
+using BlazeHub.Models.Flatpak;
+using BlazeHub.Services.Flatpak;
+using BlazeHub.Utils;
+using BlazeHub.Widgets;
+using BlazeHub.Windows;
 using Gtk;
 using Spinner = Adw.Spinner;
 
-namespace FlowyApphub.Views;
+namespace BlazeHub.Views;
 
 public class InstalledAppsView : Box
 {

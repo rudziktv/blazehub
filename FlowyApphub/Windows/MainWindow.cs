@@ -1,17 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using Adw;
-using FlowyApphub.Utils;
-using FlowyApphub.Views;
-using Gio;
-using GObject;
+using BlazeHub.Views;
 using Gtk;
-using Box = Gtk.Box;
 using Button = Gtk.Button;
 using HeaderBar = Adw.HeaderBar;
-using SearchEntry = Gtk.SearchEntry;
-using Window = Gtk.Window;
 
-namespace FlowyApphub.Windows;
+namespace BlazeHub.Windows;
 
 public class MainWindow : Adw.ApplicationWindow
 {

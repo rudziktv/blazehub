@@ -1,7 +1,7 @@
 using GdkPixbuf;
 using Gtk;
 
-namespace FlowyApphub.Models.FlathubApp;
+namespace BlazeHub.Models.Flathub;
 
 public class AppScreenshot(Image imageWidget, Pixbuf pixbuf, string url, int width, int height, string caption = "")
 {

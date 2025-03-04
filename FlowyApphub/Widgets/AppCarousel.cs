@@ -1,10 +1,9 @@
 using Adw;
-using FlowyApphub.Models.FlathubApp;
-using FlowyApphub.Utils;
-using Gdk;
+using BlazeHub.Models.Flathub;
+using BlazeHub.Utils;
 using Gtk;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class AppCarousel : Box
 {

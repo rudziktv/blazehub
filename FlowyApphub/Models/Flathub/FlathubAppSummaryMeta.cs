@@ -1,4 +1,4 @@
-namespace FlowyApphub.Models.Flathub;
+namespace BlazeHub.Models.Flathub;
 
 [Serializable]
 public class FlathubAppSummaryMeta

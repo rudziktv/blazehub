@@ -1,7 +1,7 @@
-using FlowyApphub.Utils;
+using BlazeHub.Utils;
 using Gtk;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class CardWithBadge : Box
 {

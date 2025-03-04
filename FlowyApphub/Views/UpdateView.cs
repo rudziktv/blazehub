@@ -1,10 +1,10 @@
 using Adw;
-using FlowyApphub.Services.Flatpak;
-using FlowyApphub.Utils;
-using FlowyApphub.Widgets;
+using BlazeHub.Services.Flatpak;
+using BlazeHub.Utils;
+using BlazeHub.Widgets;
 using Gtk;
 
-namespace FlowyApphub.Views;
+namespace BlazeHub.Views;
 
 public class UpdateView : Box
 {

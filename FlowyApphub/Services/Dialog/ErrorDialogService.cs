@@ -1,8 +1,6 @@
 using Adw;
-using FlowyApphub.Utils;
-using Gtk;
 
-namespace FlowyApphub.Services.Dialog;
+namespace BlazeHub.Services.Dialog;
 
 public static class ErrorDialogService
 {

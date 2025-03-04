@@ -1,4 +1,4 @@
-namespace FlowyApphub.Models.Flathub;
+namespace BlazeHub.Models.Flathub;
 
 public class FlathubAppFullPermission(string keyword, string title, string description)
 {

@@ -1,13 +1,9 @@
 using System.Diagnostics;
-using System.Text.RegularExpressions;
-using FlowyApphub.Models.Flatpak;
-using FlowyApphub.Services.Dialog;
-using Gio;
-using File = System.IO.File;
-using Monitor = Gdk.Monitor;
+using BlazeHub.Models.Flatpak;
+using BlazeHub.Services.Dialog;
 using Task = System.Threading.Tasks.Task;
 
-namespace FlowyApphub.Services.Flatpak;
+namespace BlazeHub.Services.Flatpak;
 
 public static class FlatpakService
 {
@@ -39,7 +35,7 @@ public static class FlatpakService
     {
         try
         {
-            await FlatpakHelloWorld();
+            await GetFlatpakVersion();
             CurrentRefreshTask = RefreshFlatpakAppListTask();
             FlatpakListener.OnFlatpakFolderChanged += FlatpakFolderChanged;
         }
@@ -114,7 +110,7 @@ public static class FlatpakService
         OnInstalledAppsChanged?.Invoke();
     }
 
-    private static ProcessStartInfo GetFlatpakStartInfo(string args)
+    public static ProcessStartInfo GetFlatpakStartInfo(string args)
     {
         Console.WriteLine($"FLATPAK_CMD = {Environment.GetEnvironmentVariable("FLATPAK_CMD")}");
         if (Environment.GetEnvironmentVariable("FLATPAK_CMD") != null)
@@ -164,11 +160,10 @@ public static class FlatpakService
         return false;
     }
 
-    private static async Task FlatpakHelloWorld()
+    private static async Task GetFlatpakVersion()
     {
         try
         {
-            Console.WriteLine("flatpak helloworld");
             var info = GetFlatpakStartInfo("--version");
             using Process process = new Process();
             process.StartInfo = info;
@@ -190,17 +185,6 @@ public static class FlatpakService
         List<InstalledFlatpakApp> apps = [];
         try
         {
-            // old way
-            // ProcessStartInfo info = new ProcessStartInfo
-            // {
-            //     // FileName = "flatpak", // old, dev working
-            //     FileName = Environment.GetEnvironmentVariable("FLATPAK_CMD") ?? "flatpak",
-            //     Arguments = "list --app --columns=application,name,version,branch,origin,installation,size",
-            //     RedirectStandardOutput = true,
-            //     UseShellExecute = false,
-            //     CreateNoWindow = true
-            // };
-            Console.WriteLine("Getting Flatpak AppList");
             var info = GetFlatpakStartInfo("list --app --columns=application,name,version,branch,origin,installation,size");
             using Process process = new Process();
             process.StartInfo = info;

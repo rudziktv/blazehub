@@ -1,6 +1,6 @@
-using FlowyApphub.Utils;
+using BlazeHub.Utils;
 
-namespace FlowyApphub.Services.Flatpak;
+namespace BlazeHub.Services.Flatpak;
 
 public partial class FlatpakPackageProgress(string id, string branch, string op, string source, string size)
 {

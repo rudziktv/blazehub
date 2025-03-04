@@ -1,13 +1,13 @@
 using System.Globalization;
 using Adw;
-using FlowyApphub.Models.Flathub;
-using FlowyApphub.Services.DescriptionParser;
-using FlowyApphub.Utils;
+using BlazeHub.Models.Flathub;
+using BlazeHub.Services.DescriptionParser;
+using BlazeHub.Utils;
 using Gtk;
 using Dialog = Adw.Dialog;
 using HeaderBar = Adw.HeaderBar;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public class AppChangelog : Box
 {

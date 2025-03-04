@@ -1,10 +1,8 @@
-using FlowyApphub.Models.Flathub;
-using FlowyApphub.Services.Flathub;
-using FlowyApphub.Services.Flathub.Safety;
-using FlowyApphub.Utils;
+using BlazeHub.Models.Flathub;
+using BlazeHub.Services.Flathub.Safety;
 using Gtk;
 
-namespace FlowyApphub.Widgets;
+namespace BlazeHub.Widgets;
 
 public static class StoreAppCards
 {

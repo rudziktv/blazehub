@@ -1,7 +1,6 @@
-using FlowyApphub.Utils;
 using Gtk;
 
-namespace FlowyApphub.AdwGtkFramework;
+namespace BlazeHub.AdwGtkFramework;
 
 public class AdvancedBox : Box
 {

@@ -1,6 +1,6 @@
-using FlowyApphub.Services.Flatpak;
+using BlazeHub.Services.Flatpak;
 
-namespace FlowyApphub.Services;
+namespace BlazeHub.Services;
 
 public static class AppServices
 {

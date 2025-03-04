@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace FlowyApphub.Utils;
+namespace BlazeHub.Utils;
 
 public static partial class NetworkUnitUtils
 {

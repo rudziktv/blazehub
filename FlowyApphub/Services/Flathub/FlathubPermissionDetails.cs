@@ -1,6 +1,6 @@
-using FlowyApphub.Models.Flathub;
+using BlazeHub.Models.Flathub;
 
-namespace FlowyApphub.Services.Flathub;
+namespace BlazeHub.Services.Flathub;
 
 public static class FlathubPermissionDetails
 {

@@ -2,7 +2,7 @@ using Adw;
 using Gtk;
 using HeaderBar = Adw.HeaderBar;
 
-namespace FlowyApphub.Utils;
+namespace BlazeHub.Utils;
 
 public static class ViewUtils
 {
