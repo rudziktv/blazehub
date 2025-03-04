@@ -30,11 +30,12 @@ public static class FlatpakService
     
     
     
-    // TODO - monitor flatpak changes
+    // TODO - configure flatpak remotes
     public static async void InitializeFlatpakService()
     {
         try
         {
+            await ConfigureRemotesIfNeeded();
             await GetFlatpakVersion();
             CurrentRefreshTask = RefreshFlatpakAppListTask();
             FlatpakListener.OnFlatpakFolderChanged += FlatpakFolderChanged;
@@ -178,6 +179,74 @@ public static class FlatpakService
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private static async Task ConfigureRemotesIfNeeded()
+    {
+        try
+        {
+            var remotes = await GetFlatpakRemotes();
+            var userFlathubExists = remotes.FirstOrDefault(r => r.Name == "flathub" && r.Options.Contains("user"));
+            var sysFlathubExists = remotes.FirstOrDefault(r => r.Name == "flathub" && r.Options.Contains("system"));
+
+            if (userFlathubExists == null)
+                await AddFlatpakRemote("flathub", "https://flathub.org/repo/flathub.flatpakrepo", "-u");
+            
+            if (sysFlathubExists == null)
+                await AddFlatpakRemote("flathub", "https://flathub.org/repo/flathub.flatpakrepo", "-system");
+        }
+        catch (Exception e)
+        {
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
+    }
+
+    private static async Task AddFlatpakRemote(string name, string location, string args)
+    {
+        try
+        {
+            Console.WriteLine($"Add flatpak remote {name} of {location} with args: {args}");
+            var info = GetFlatpakStartInfo($"remote-add --if-not-exists {args} {name} {location}");
+            using var process = new Process();
+            process.StartInfo = info;
+            process.Start();
+            await process.WaitForExitAsync();
+        }
+        catch (Exception e)
+        {
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
+    }
+
+    private static async Task<List<FlatpakRemote>> GetFlatpakRemotes()
+    {
+        var remotes = new List<FlatpakRemote>();
+        try
+        {
+            var info = GetFlatpakStartInfo("remotes");
+            using var process = new Process();
+            process.StartInfo = info;
+            process.Start();
+            
+            var output = await process.StandardOutput.ReadToEndAsync();
+            
+            var remotesStrings = output.Split('\n');
+
+            foreach (var str in remotesStrings)
+            {
+                if (string.IsNullOrWhiteSpace(str)) continue;
+                var split = str.Split('\t');
+                remotes.Add(new FlatpakRemote(split[0], split[1]));
+            }
+        }
+        catch (Exception e)
+        {
+            ErrorDialogService.ShowErrorDialog(e);
+            Console.WriteLine(e);
+        }
+        return remotes;
     }
     
     private static async Task<List<InstalledFlatpakApp>> GetFlatpakAppList(CancellationToken token = default)
