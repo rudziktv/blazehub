@@ -6,7 +6,7 @@
     "sdk-extensions": [
         "org.freedesktop.Sdk.Extension.dotnet8"
     ],
-    "command": "/app/blazehub",
+    "command": "blazehub",
     "finish-args": [
         "--socket=fallback-x11",
         "--socket=wayland",
