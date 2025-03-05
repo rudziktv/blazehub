@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report!
+        Thanks for taking the time to fill out this feature request!
   - type: input
     id: contact
     attributes:
@@ -48,7 +48,7 @@ body:
     id: example-code
     attributes:
       label: Proposal code
-      description: If you don't want to contribute it yourself, you can propose change in source, some code, pseudocode etc. 
+      description: If you don't want to contribute it yourself, you can propose here change in source, some code, pseudocode etc. 
       render: shell
   - type: checkboxes
     id: terms
