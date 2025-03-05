@@ -40,9 +40,7 @@ body:
     attributes:
       label: System specification
       description: Tell us about your hardware/software you are using - the most important RAM.
-      placeholder: ex. AMD Ryzen 7600X AMD Radeon RX 6600 XT DDR5 32GB RAM 6000MHz
-    validations:
-      required: true
+      placeholder: ex. AMD Ryzen 7600X, AMD Radeon RX 6600 XT, DDR5 32GB RAM 6000MHz...
   - type: dropdown
     id: version
     attributes:
