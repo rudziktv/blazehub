@@ -27,6 +27,22 @@ body:
       value: "A bug happened!"
     validations:
       required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Tell us how to recreate the problem
+      placeholder: ex. 1. Opened Installed tab\n2. Clicked on uninstall...
+    validations:
+      required: true
+  - type: textarea
+    id: system-spec
+    attributes:
+      label: System specification
+      description: Tell us about your hardware/software you are using - the most important RAM.
+      placeholder: ex. AMD Ryzen 7600X\nAMD Radeon RX 6600 XT\nDDR5 32GB RAM 6000MHz
+    validations:
+      required: true
   - type: dropdown
     id: version
     attributes:
