@@ -40,6 +40,8 @@ class Program
             about.SetLicenseType(License.Gpl30);
             about.SetApplicationIcon("blaze-apphub");
             about.SetVersion(Application.Version ?? "error");
+            about.SetWebsite("https://github.com/rudziktv/blazehub");
+            about.SetIssueUrl("https://github.com/rudziktv/blazehub/issues/new/choose");
             about.Present(Application.ActiveWindow);
         };
         Application.AddAction(action);

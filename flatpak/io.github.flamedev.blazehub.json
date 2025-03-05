@@ -14,6 +14,7 @@
         "--share=network",
         "--share=ipc",
         "--filesystem=/var/lib/flatpak/app",
+        "--filesystem=/var/lib/flatpak",
         "--socket=session-bus",
         "--allow=devel",
         "--talk-name=org.freedesktop.Flatpak",

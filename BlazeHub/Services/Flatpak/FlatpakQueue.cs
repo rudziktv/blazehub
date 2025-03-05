@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using BlazeHub.Utils;
@@ -16,7 +17,7 @@ public static class FlatpakQueue
     public static event Action<FlatpakAction>? OnTaskFinished;
     public static event Action? OnQueueChanged;
     
-    public static List<FlatpakAction> Queue { get; private set; } = [];
+    public static ObservableCollection<FlatpakAction> Queue { get; private set; } = [];
 
     
     public static void AddToQueue(FlatpakAction action)
@@ -26,12 +27,12 @@ public static class FlatpakQueue
         StartTaskIfFree();
     }
 
-    public static void AddToQueue(FlatpakAction[] actions)
-    {
-        Queue.AddRange(actions);
-        OnQueueChanged?.Invoke();
-        StartTaskIfFree();
-    }
+    // public static void AddToQueue(FlatpakAction[] actions)
+    // {
+    //     // Queue.Add(actions);
+    //     OnQueueChanged?.Invoke();
+    //     StartTaskIfFree();
+    // }
 
     public static void RemoveFromQueue(FlatpakAction action)
     {
@@ -80,10 +81,11 @@ public static class FlatpakQueue
         var line = outLine.Data;
         if (string.IsNullOrEmpty(line) || CurrentProgress == null) return;
         
+        Console.WriteLine(line);
         
         if (line.Contains(".\t"))
         {
-            var reg = new Regex(@"(\d+\.)\s+([\w\.]+)\s+(\w+)\s+(\w+)\s+(\w+)\s+.\s+([\d\.]+.\w+)(?:\s+(\D+))?");
+            var reg = new Regex(@"(\d+\.)\s+([\w\.\-_\d]+)\s+([\w\.\d-]+)\s+(\w+)\s+(\w+)\s+.\s+([\d\.]+.\w+)(?:\s+(\D+))?");
             var mat = reg.Match(line);
             if (!mat.Success) return;
             var package = new FlatpakPackageProgress(
@@ -110,6 +112,12 @@ public static class FlatpakQueue
     
             CurrentProgress.CurrentStage = stage;
             CurrentProgress.CurrentNetworkSpeed = speed;
+
+            if (stage >= CurrentProgress.PackagesProgress.Count)
+            {
+                Console.WriteLine($"ERROR! Report it to devs! Send which app and deps you tried to install! Stage out of range! CurrentStage: {stage}, PackagesLength: {CurrentProgress.PackagesProgress.Count}. Fallback percent: {percent}");
+                return;
+            }
             
             var package = CurrentProgress.PackagesProgress[stage];
 

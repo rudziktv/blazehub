@@ -21,6 +21,8 @@ public class FlatpakDirs(string basePath)
         Path.Combine(FlatpakExports, "share");
     private string FlatpakIcons =>
         Path.Combine(FlatpakShare, "icons");
+    private string FlatpakMetaInfo =>
+        Path.Combine(FlatpakShare, "metainfo");
 
     private FileSystemWatcher? _watcher;
 
@@ -73,11 +75,9 @@ public class FlatpakDirs(string basePath)
         void CallbackWrapper(object obj, FileSystemEventArgs args)
         {
             Console.WriteLine($"NewPathCreated-FlatpakDirs {args.FullPath}");
-            if (_watcher != null && args.FullPath.StartsWith(directory))
-            {
-                alternativeCallback?.Invoke();
-                _watcher.Created -= CallbackWrapper;
-            }
+            if (_watcher == null || !args.FullPath.StartsWith(directory)) return;
+            alternativeCallback?.Invoke();
+            _watcher.Created -= CallbackWrapper;
         }
     }
     

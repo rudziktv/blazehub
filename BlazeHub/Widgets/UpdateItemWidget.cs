@@ -10,7 +10,7 @@ public class UpdateItemWidget : Box
     private readonly ProgressBar _progressBar;
     private readonly Label _size;
     private readonly Label _downloadedSize;
-    private readonly FlatpakAction _action;
+    public FlatpakAction Action { get; }
     private readonly Button _cancelButton;
     
     private readonly Label _percentage;
@@ -20,7 +20,7 @@ public class UpdateItemWidget : Box
     
     public UpdateItemWidget(FlatpakAction action)
     {
-        _action = action;
+        Action = action;
         _progressBar = ProgressBar.New();
         _size = Label.New(" / --.- MB");
         _downloadedSize = Label.New("0 bytes");
@@ -75,7 +75,24 @@ public class UpdateItemWidget : Box
         Append(packagesLabel);
         Append(_packages);
 
-        FlatpakQueue.OnTaskStarted += OnFlatpakQueueNextTask;
+        // TODO - REPLACE FlatpakAction -> FlatpakProgress (maybe rename it a little)
+        // UpdateItemWidget should use FlatpakProgress by default
+        // instead of FlatpakAction, which doesn't provide things like packages, progress etc.
+        // all required props should have proper events for updates during retrieving from CLI
+        if (FlatpakQueue.Queue.Count > 0 && FlatpakQueue.Queue[0] == action)
+        {
+            OnFlatpakQueueNextTask(action);
+            Console.WriteLine($"INITIALIZING UPDATEWIDGET {FlatpakQueue.CurrentProgress == null} {FlatpakQueue.CurrentProgress?.PackagesProgress.Count}");
+            if (FlatpakQueue.CurrentProgress != null)
+                foreach (var package in FlatpakQueue.CurrentProgress.PackagesProgress)
+                {
+                    OnFlatpakPackageAttached(package);
+                }
+        }
+        else
+        {
+            FlatpakQueue.OnTaskStarted += OnFlatpakQueueNextTask;
+        }
         FlatpakQueue.OnFlatpakPackageAttached += OnFlatpakPackageAttached;
     }
 
@@ -92,7 +109,7 @@ public class UpdateItemWidget : Box
 
     private void OnFlatpakQueueNextTask(FlatpakAction obj)
     {
-        if (obj.AppTarget == _action.AppTarget)
+        if (obj.AppTarget == Action.AppTarget)
         {
             FlatpakQueue.OnTaskStarted -= OnFlatpakQueueNextTask;
             FlatpakQueue.OnTaskProgress += OnFlatpakQueueProgress;
@@ -106,6 +123,7 @@ public class UpdateItemWidget : Box
 
     private void OnTaskFinished(FlatpakAction obj)
     {
+        FlatpakQueue.OnFlatpakPackageAttached -= OnFlatpakPackageAttached;
         FlatpakQueue.OnTaskProgress -= OnFlatpakQueueProgress;
         FlatpakQueue.OnTaskFinished -= OnTaskFinished;
     }

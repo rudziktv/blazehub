@@ -72,8 +72,12 @@ public class InstalledAppsView : Box
 
     private void SetSpinner()
     {
-        _contentBox.Clear();
-        _contentBox.Append(Spinner.New());
+        GLib.Functions.IdleAdd(0, () =>
+        {
+            _contentBox.Clear();
+            _contentBox.Append(Spinner.New());
+            return false;
+        });
     }
 
     private void SetAppsList(IEnumerable<InstalledFlatpakApp> apps)
