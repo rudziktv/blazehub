@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.flamedev.blazehub</id>
+
+    <name>Blaze Hub</name>
+    <summary>Blaze Hub is a new appstore for your GNOME </summary>
+
+    <metadata_license>CC-BY-4.0</metadata_license>
+    <project_license>GPL-3.0-or-later</project_license>
+
+    <description>
+        <p>
+            Blaze Hub is a GTK4 and LibAdwaita built application store, based on flathub. It might appear familiar to the GNOME Software, but there are a few more features and differences.
+        </p>
+        <p>
+            - progress tab with network speed, (estimated) amount of downloaded data, (also estimated) total size to download - downloaded item also shows what packages it downloads - ability to choose between user&apos;s and system&apos;s installation - full-window screenshot preview on click, with ability to open in the ImageViewer
+        </p>
+    </description>
+
+    <launchable type="desktop-id">io.github.flamedev.blazehub.desktop</launchable>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/installed-apps-view.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/installation-mode-choose.png?raw=true</image>
+        </screenshot>
+        <screenshot>
+            <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/queue-progress-view.png?raw=true</image>
+        </screenshot>
+    </screenshots>
+</component>

@@ -30,6 +30,10 @@
         <EmbeddedResource Include="share\applications\io.github.flamedev.blazehub.desktop">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
+        <None Remove="share\metainfo\io.github.flamedev.blazehub.metainfo.xml" />
+        <EmbeddedResource Include="share\metainfo\io.github.flamedev.blazehub.metainfo.xml">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
