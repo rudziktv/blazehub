@@ -3,30 +3,85 @@
     <id>io.github.flamedev.blazehub</id>
 
     <name>Blaze Hub</name>
-    <summary>Blaze Hub is a new appstore for your GNOME </summary>
+    <summary>Your new GNOME appstore</summary>
 
     <metadata_license>CC-BY-4.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
+    
+    <developer id="io.github.flamedev">
+        <name>rudzik.tv</name>
+    </developer>
+    
+    <categories>
+        <category>System</category>
+    </categories>
+    
+    <keywords>
+        <keyword>appstore</keyword>
+        <keyword>store</keyword>
+    </keywords>
+
+    <branding>
+        <color type="primary" scheme_preference="light">#d6c33b</color>
+        <color type="primary" scheme_preference="dark">#981414</color>
+    </branding>
 
     <description>
         <p>
             Blaze Hub is a GTK4 and LibAdwaita built application store, based on flathub. It might appear familiar to the GNOME Software, but there are a few more features and differences.
         </p>
-        <p>
-            - progress tab with network speed, (estimated) amount of downloaded data, (also estimated) total size to download - downloaded item also shows what packages it downloads - ability to choose between user&apos;s and system&apos;s installation - full-window screenshot preview on click, with ability to open in the ImageViewer
-        </p>
+        <ul>
+            <li>progress tab with network speed, (estimated) amount of downloaded data, (also estimated) total size to download</li>
+            <li>downloaded item also shows what packages it downloads</li>
+            <li>ability to choose between user&apos;s and system&apos;s installation</li>
+            <li>full-window screenshot preview on click, with ability to open in the ImageViewer</li>
+        </ul>
     </description>
 
     <launchable type="desktop-id">io.github.flamedev.blazehub.desktop</launchable>
     <screenshots>
         <screenshot type="default">
             <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/installed-apps-view.png?raw=true</image>
+            <caption>Installed apps tab</caption>
         </screenshot>
         <screenshot>
             <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/installation-mode-choose.png?raw=true</image>
+            <caption>Installation mode chooser</caption>
         </screenshot>
         <screenshot>
             <image>https://github.com/rudziktv/blazehub/blob/72771aed828071f78f0f478d947f0feb7cd750f5/.resources/screenshots/queue-progress-view.png?raw=true</image>
+            <caption>Queue progress view</caption>
         </screenshot>
     </screenshots>
+    
+    <url type="homepage">https://github.com/rudziktv/blazehub</url>
+    <url type="vcs-browser">https://github.com/rudziktv/blazehub</url>
+    <url type="bugtracker">https://github.com/rudziktv/blazehub/issues?q=is%3Aissue%20state%3Aopen%20label%3Abug</url>
+    
+    <releases>
+        <release version="0.0.0-alpha.dev.preview.4" date="2025-03-05">
+            <description>
+                <p>Bugfixes</p>
+                <ul>
+                    <li>fixed multiple downloads UI Issue</li>
+                    <li>fixed missing packages and array out of range</li>
+                    <li>fixed missing interface after asynchronous SetSpinner invokaction</li>
+                    <li>fixed permissions</li>
+                </ul>
+                <p>Features</p>
+                <ul>
+                    <li>new update render list CustomListBox, which updates only changed elements (like FlatList in ReactNative)</li>
+                    <li>website and report issue buttons in about dialog</li>
+                </ul>
+            </description>
+        </release>
+    </releases>
+
+    <requires>
+        <control>keyboard</control>
+        <control>pointing</control>
+        <display_length compare="ge">768</display_length>
+    </requires>
+
+    <content_rating type="oars-1.1" />
 </component>
