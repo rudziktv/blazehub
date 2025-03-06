@@ -60,6 +60,24 @@
     
     <releases>
         <release version="0.0.0-alpha.dev.preview.4" date="2025-03-05">
+            <url type="details">https://github.com/rudziktv/blazehub/releases/tag/v0.0.0-alpha.dev.preview.4</url>
+            <description>
+                <p>Bugfixes</p>
+                <ul>
+                    <li>fixed multiple downloads UI Issue</li>
+                    <li>fixed missing packages and array out of range</li>
+                    <li>fixed missing interface after asynchronous SetSpinner invokaction</li>
+                    <li>fixed permissions</li>
+                </ul>
+                <p>Features</p>
+                <ul>
+                    <li>new update render list CustomListBox, which updates only changed elements (like FlatList in ReactNative)</li>
+                    <li>website and report issue buttons in about dialog</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.0.0-alpha.dev.preview.3" date="2025-03-04">
+            <url type="details">https://github.com/rudziktv/blazehub/releases/tag/v0.0.0-alpha.dev.preview.3</url>
             <description>
                 <p>Bugfixes</p>
                 <ul>
